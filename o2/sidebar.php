@@ -260,8 +260,12 @@ label {
                 <a class="nav-link dropdown-toggle" id="profileDropdown" href="#" data-toggle="dropdown" aria-expanded="false">
                   <div class="nav-profile-text">Search Customer </div>
                 </a>
-                <div class="dropdown-menu center navbar-dropdown" aria-labelledby="profileDropdown">
-                  search form                    
+                <div class="dropdown-menu center navbar-dropdown" aria-labelledby="profileDropdown" style="width: 280px;">
+                  <div class="px-3 py-2">
+                  <input type="text" class="form-control" name="search" id="search" placeholder="Phone | Email | Name">
+                   <button class="btn btn-primary mb-2 mt-2 mb-md-0 mr-2"> Search </button>  
+                  </div>
+
                 </div>
               </li>
               <li class="nav-item nav-profile dropdown d-none d-md-block">

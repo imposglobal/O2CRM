@@ -31,5 +31,64 @@
     <!-- Custom js for this page -->
     <script src="../assets/js/dashboard.js"></script>
     <!-- End custom js for this page -->
+    <script>
+    // JavaScript function to get ID from search input and pass through AJAX
+    function searchAndSubmit() {
+        // Get the ID from the search input
+        var customerId = $('#search').val().trim();
+
+        // Check if the ID is empty
+        if (customerId === '') {
+            // Show Sweet Alert for empty search input
+            Swal.fire(
+                'Input Error!',
+                'Please enter a customer ID.',
+                'error'
+            );
+            return;
+        }
+
+        // Show Sweet Alert confirmation
+        Swal.fire({
+            title: 'Are you sure?',
+            text: 'You are about to search for customer with ID: ' + customerId,
+            icon: 'info',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, search it!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                // Perform AJAX request
+                $.ajax({
+                    type: "POST",
+                    url: "search.php", // Replace with your search endpoint
+                    data: { id: customerId },
+                    success: function(response) {
+                        // Handle success response
+                        console.log("Search result: " + response);
+                        // Show success message
+                        Swal.fire(
+                            'Success!',
+                            'Customer found: ' + response,
+                            'success'
+                        );
+                    },
+                    error: function(xhr, status, error) {
+                        // Handle error response
+                        console.error("Error occurred while searching:", error);
+                        // Show error message
+                        Swal.fire(
+                            'Error!',
+                            'An error occurred while searching for the customer.',
+                            'error'
+                        );
+                    }
+                });
+            }
+        });
+    }
+</script>
+
   </body>
 </html>
