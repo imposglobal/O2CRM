@@ -4,7 +4,7 @@ session_start();
 $db = db();
 if(isset($_REQUEST['login'])){
     // Define the allowed IP addresses
-    $allowed_ips = array("122.170.110.208", "103.211.62.116","192.168.1.32");
+    $allowed_ips = array("122.170.110.208", "103.211.62.116","192.168.1.61");
 
     // Get the visitor's IP address
     $visitor_ip = gethostbyname(trim(`hostname`));
