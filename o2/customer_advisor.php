@@ -185,29 +185,78 @@
 <script>
     // JavaScript function to send form data via AJAX
     function submitFormData() {
-    // Prevent default form submission behavior
-    event.preventDefault();
-        // Get form data
-    var formData = new FormData(document.getElementById("advForm")); // Replace "yourFormId" with the actual ID of your form
-        console.log(formData);
-        // AJAX request
-        $.ajax({
-            type: "POST",
-            url: "http://localhost/o2crm/plus-admin/api/update.php",
-            data: formData,
-            processData: false,
-            contentType: false,
-            success: function(response) {
-                // Handle success response
-                console.log("Data submitted successfully: " + response);
-            },
-            error: function(xhr, status, error) {
-                // Handle error response
-                console.error("Error occurred while submitting data:", error);
+        // Prevent default form submission behavior
+        event.preventDefault();
+
+        // Perform field validation
+        var isValid = true;
+        $('#advForm input, #advForm select').each(function() {
+            if ($(this).val().trim() === '') {
+                isValid = false;
+                return false; // Exit the loop early if any field is empty
+            }
+        });
+
+        if (!isValid) {
+            // Show Sweet Alert for validation error
+            Swal.fire(
+                'Validation Error!',
+                'Please fill in all required fields.',
+                'error'
+            );
+            return;
+        }
+
+        // Show Sweet Alert confirmation
+        Swal.fire({
+            title: 'Are you sure?',
+            text: 'You are about to add a record. Do you want to proceed?',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, add it!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                // Get form data
+                var formData = new FormData(document.getElementById("advForm"));
+                console.log(formData);
+                // AJAX request
+                $.ajax({
+                    type: "POST",
+                    url: "http://localhost/o2crm/api/update.php",
+                    data: formData,
+                    processData: false,
+                    contentType: false,
+                    success: function(response) {
+                        // Handle success response
+                        console.log("Data submitted successfully: " + response);
+                        // Show success message
+                        Swal.fire(
+                            'Success!',
+                            'Record has been added successfully.',
+                            'success'
+                        ).then((result) => {
+                            // Redirect to another page
+                            window.location.href = "view_customer.php";
+                        });
+                    },
+                    error: function(xhr, status, error) {
+                        // Handle error response
+                        console.error("Error occurred while submitting data:", error);
+                        // Show error message
+                        Swal.fire(
+                            'Error!',
+                            'An error occurred while adding the record.',
+                            'error'
+                        );
+                    }
+                });
             }
         });
     }
-</script>      
+</script>
+
           <!-- content-wrapper ends -->
         <!-- Footer  -->
         <?php require('footer.php'); ?>

@@ -159,7 +159,7 @@
         // AJAX request
         $.ajax({
             type: "POST",
-            url: "http://localhost/o2crm/plus-admin/api/insert.php",
+            url: "http://localhost/o2crm/api/insert.php",
             data: formData,
             processData: false,
             contentType: false,
@@ -171,6 +171,9 @@
                     icon: 'success',
                     title: 'Success',
                     text: 'Data submitted successfully',
+                }).then(function() {
+                    // Redirect the user to another page after the alert is closed
+                    window.location.href = "view_customer.php"; // Replace "http://example.com/redirect-page" with your actual redirect URL
                 });
             },
             error: function(xhr, status, error) {

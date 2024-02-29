@@ -7,7 +7,7 @@ function displayUsersWithPagination($conn, $limit = 10) {
     $start = ($page - 1) * $limit;
 
     // Retrieve users
-    $query = "SELECT * FROM customers LIMIT $start, $limit";
+    $query = "SELECT * FROM customers ORDER BY cid DESC LIMIT $start, $limit";
     $result = mysqli_query($conn, $query);
     $users = mysqli_fetch_all($result, MYSQLI_ASSOC);
 
