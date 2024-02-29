@@ -261,7 +261,7 @@ label {
                   <div class="nav-profile-text">Search Customer </div>
                 </a>
                 <div class="dropdown-menu center navbar-dropdown" aria-labelledby="profileDropdown">
-                  search form                    
+                  search form                  
                 </div>
               </li>
               <li class="nav-item nav-profile dropdown d-none d-md-block">
