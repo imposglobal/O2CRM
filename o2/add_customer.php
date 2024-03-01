@@ -1,4 +1,12 @@
 <title>Add Customer - Customer Stage</title>
+<style>
+    span#result {
+    font-size: 12px;
+    background: #0033c4;
+    color: #fff;
+    padding: 2px 10px;
+}
+</style>
       <!-- partial:partials/_sidebar.html -->
       <?php require('sidebar.php'); ?>
       <!-- partial -->
@@ -41,13 +49,13 @@
                     <div class="col-lg-4">
                         <div class="form-group">
                             <label>Customer's Email</label>
-                            <input type="email" name="email" class="form-control" id="email"  placeholder="Enter Email">
+                            <input oninput="dupCheck(this.value);" type="email" name="email" class="form-control" id="email"  placeholder="Enter Email">
                         </div>
                     </div>
                     <div class="col-lg-4">
                         <div class="form-group">
                             <label>Customer's Phone</label>
-                            <input type="text" name="phone" class="form-control" id="phone"  placeholder="Enter Phone No">
+                            <input oninput="dupCheck(this.value);" type="text" name="phone" class="form-control mb-2" id="phone" placeholder="Enter Phone No">
                         </div>
                     </div>
                     <div class="col-lg-4">
@@ -117,7 +125,7 @@
                         <div class="form-group mt-2">
                         <label></label>
                             <input type="hidden" name="by_agent" value="add_agent">
-                            <button onclick="submitFormData(event)" class="form-control btn-sm py-2 mt-1 px-4 btn-primary mb-2 mb-md-0 mr-2"> Add Record </button>
+                            <button id="addcust" onclick="submitFormData(event)" class="form-control btn-sm py-2 mt-1 px-4 btn-primary mb-2 mb-md-0 mr-2"> Add Record </button>
                         </div>
                     </div>
                 </div>
@@ -129,6 +137,36 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
 <script>
+    function dupCheck(input) {
+    // Log the input value to the console
+    console.log("Input value:", input);
+    
+     // Perform AJAX request
+                $.ajax({
+                    type: "POST",
+                    url: "http://localhost/o2crm/api/search.php", // Replace with your search endpoint
+                    data: { id: input },
+                    success: function(response) {
+                        // Handle success response
+                        console.log("Search result: " + response);
+                         // Display the input value somewhere in your HTML document
+                         if(response == "Duplicate Customer Found"){
+                            document.getElementById("addcust").disabled = true;
+                            document.getElementById("addcust").style.cursor = "not-allowed";
+                            Swal.fire(
+                            'Success!',
+                            'Status: ' + response,
+                            'success'
+                            );
+                         }else{
+                            document.getElementById("addcust").disabled = false;
+                            document.getElementById("addcust").style.cursor = "pointer";
+                         }
+                       
+                    }
+                });
+}
+
     // JavaScript function to send form data via AJAX
     function submitFormData(event) {
         // Prevent default form submission behavior
@@ -170,7 +208,7 @@
                 Swal.fire({
                     icon: 'success',
                     title: 'Success',
-                    text: 'Data submitted successfully',
+                    text: 'Data submitted successfully' + response,
                 }).then(function() {
                     // Redirect the user to another page after the alert is closed
                     window.location.href = "view_customer.php"; // Replace "http://example.com/redirect-page" with your actual redirect URL

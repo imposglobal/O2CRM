@@ -79,7 +79,7 @@ label {
             <span class="nav-item-head">Dashboard Menu</span>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="index.html">
+            <a class="nav-link" href="dashboard.php">
               <i class="mdi mdi-compass-outline menu-icon"></i>
               <span class="menu-title">Dashboard</span>
             </a>
@@ -263,7 +263,7 @@ label {
                 <div class="dropdown-menu center navbar-dropdown" aria-labelledby="profileDropdown" style="width: 280px;">
                   <div class="px-3 py-2">
                   <input type="text" class="form-control" name="search" id="search" placeholder="Phone | Email | Name">
-                   <button class="btn btn-primary mb-2 mt-2 mb-md-0 mr-2"> Search </button>  
+                   <button onclick="searchAndSubmit()" class="btn btn-primary mb-2 mt-2 mb-md-0 mr-2"> Search </button>  
                   </div>
 
                 </div>

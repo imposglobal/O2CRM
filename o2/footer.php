@@ -62,7 +62,7 @@
                 // Perform AJAX request
                 $.ajax({
                     type: "POST",
-                    url: "search.php", // Replace with your search endpoint
+                    url: "http://localhost/o2crm/api/search.php", // Replace with your search endpoint
                     data: { id: customerId },
                     success: function(response) {
                         // Handle success response
@@ -70,7 +70,7 @@
                         // Show success message
                         Swal.fire(
                             'Success!',
-                            'Customer found: ' + response,
+                            'Status: ' + response,
                             'success'
                         );
                     },

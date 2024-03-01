@@ -1,18 +1,19 @@
 <?php 
 require('db.php');
 
-function search_customer($conn, $input){
+function search_customer($db, $input){
     $sql = "SELECT * FROM customers WHERE email='$input' OR phone='$input'";
-        $stmt = $db->prepare($sql);
-        $stmt->bind_param("s", $username);
-        $stmt->execute();
-        $result = $stmt->get_result();
-
+       // Executing the query
+        $result = mysqli_query($db, $sql);
+    
         // Check if user exists and password is correct
         if ($result->num_rows == 1) {
-            echo"Found";
+            echo"Duplicate Customer Found";
         }else{
-            echo"Not Found";
+            echo"No Duplicate Customer Found";
         }
-        search_customer($conn, 'doodlodesign@gmail.com');
+        
+}
+if(isset($_POST['id'])){
+    search_customer($conn, trim($_POST['id']));
 }
