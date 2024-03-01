@@ -41,6 +41,14 @@
                     </div>
                     </div>
                 </div>
+                <div class="col-lg-6 grid-margin stretch-card">
+                    <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">Conversions</h4>
+                        <canvas id="conversion" ></canvas>
+                    </div>
+                    </div>
+                </div>
             </div>
          </div>
 
@@ -50,7 +58,8 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 <script>
-$(document).ready(function() {
+function customer(){
+    $(document).ready(function() {
     // User-provided year parameter
     var year = 2023; // You can replace this with user input
     
@@ -104,6 +113,70 @@ $(document).ready(function() {
         });
     }
 });
+}
+customer();
+
+
+// Function for Conversation
+function customer(){
+    $(document).ready(function() {
+    // User-provided year parameter
+    var year = 2023; // You can replace this with user input
+    
+    // AJAX call to fetch data from PHP script
+    $.ajax({
+        url: 'http://localhost/o2crm/api/analytics.php',
+        type: 'GET',
+        data: { year: year },
+        dataType: 'json',
+        success: function(response) {
+            // Create chart
+            createChart(response);
+        },
+        error: function(xhr, status, error) {
+            console.error(xhr.responseText);
+        }
+    });
+
+    // Function to create the chart
+    function createChart(data) {
+        var ctx = document.getElementById('lineChart').getContext('2d');
+        var chartData = {
+            labels: [],
+            datasets: [{
+                label: 'Total Customers',
+                backgroundColor: 'rgba(54, 162, 235, 0.5)',
+                borderColor: 'rgba(54, 162, 235, 1)',
+                borderWidth: 1,
+                data: []
+            }]
+        };
+
+        // Populate chart data
+        data.forEach(function(item) {
+            chartData.labels.push(item.month_name);
+            chartData.datasets[0].data.push(item.total_customers);
+        });
+
+        var lineChart = new Chart(ctx, {
+            type: 'line',
+            data: chartData,
+            options: {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }]
+                }
+            }
+        });
+    }
+});
+}
+customer();
+
+
 </script>
 
           <!-- content-wrapper ends -->

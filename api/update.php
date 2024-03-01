@@ -160,7 +160,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // -----------------------------------------------------------------------------------
     //update from Team Leader & Managera
     elseif(isset($_REQUEST['tcid'])){
-        echo $_REQUEST['tcid'];
         $custData = array(
             'fname' => $_POST['fname'],
             'lname' => $_POST['lname'],

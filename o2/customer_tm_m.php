@@ -245,7 +245,7 @@
 
         $.ajax({
             type: "POST",
-            url: "http://localhost/o2crm/plus-admin/api/update.php",
+            url: "http://localhost/o2crm/api/update.php",
             data: formData,
             processData: false,
             contentType: false,
@@ -260,7 +260,7 @@
                 Swal.fire({
                     icon: 'success',
                     title: 'Success!',
-                    text: 'Data submitted successfully: ' + response,
+                    text: response,
                 }).then((result) => {
                     // Redirect to another page after the user clicks "OK" on the success alert
                     if (result.isConfirmed) {
