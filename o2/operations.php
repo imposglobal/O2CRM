@@ -41,8 +41,8 @@ table {
                         <label>Select Options</label>
                         <select class="form-control" id="smenu">
                             <option selected>Select Options</option>
-                            <option value="Handset">Handset</option>
-                            <option value="Package">Package</option>
+                            <option value="Handset">Handset | Color | Package</option>
+                            <option value="Package">Agents</option>
                         </select>
                     </div>
                 </div>
@@ -53,35 +53,50 @@ table {
                 <div class="col-lg-4 grid-margin stretch-card">
                     <div class="card">
                         <div class="card-body">
-                        <h5>Add Handset</h5>
-                        <hr>
                             <div class="form-group">
                                     <label>Handset Name</label>
                                     <input type="text" name="hname" class="form-control" id="hname"  placeholder="Samsung">
-                                    <button id="addcust" onclick="" class="form-control mt-3 btn-sm py-2 px-4 btn-primary"> Add Handset </button>
+                                    <button id="addhand" onclick="" class="form-control mt-3 btn-sm py-2 px-4 btn-primary"> Add Handset </button>
                             </div>
                             <hr>
                             <div class="form-group">
                                     <label>Handset Color</label>
-                                    <input type="text" name="hname" class="form-control" id="hname"  placeholder="Samsung">
-                                    <button id="addcust" onclick="" class="form-control mt-3 btn-sm py-2 px-4 btn-primary mb-md-0 mr-2"> Add Handset </button>
+                                    <input type="text" name="hcolor" class="form-control" id="hcolor"  placeholder="Samsung">
+                                    <button id="addcolor" onclick="" class="form-control mt-3 btn-sm py-2 px-4 btn-primary mb-md-0 mr-2"> Add Handset </button>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-8">
-                <table class="table table-striped"> 
-                <thead>
-                        <tr>
-                        <th scope="col">#</th>
-                        <th scope="col"><b>Handset Name</b></th>
-                        <th scope="col"><b>Delete</b></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php showHandset($conn); ?>
-                    </tbody>
-                </table>
+                    <div style="height: 280px; overflow: auto;" class="card">
+                        <table class="table table-striped"> 
+                            <thead>
+                            <tr>
+                            <th scope="col">#</th>
+                            <th scope="col"><b>Handset Name</b></th>
+                            <th scope="col"><b>Delete</b></th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                                <?php showHandset($conn); ?>
+                            </tbody>
+                        </table>
+                    </div><br>
+                    <hr>
+                    <div class="mt-4" style="height: 280px; overflow: auto;" class="card">
+                        <table class="table table-striped"> 
+                            <thead>
+                            <tr style="background:#272727" class="text-white">
+                            <th scope="col">#</th>
+                            <th scope="col"><b>Handset Colors</b></th>
+                            <th scope="col"><b>Delete</b></th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                                <?php showColors($conn); ?>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
          </div>
@@ -92,71 +107,48 @@ table {
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 <script>
-$(document).ready(function() {
-    // Call the conversion function when the document is ready
-    conversion();
-});
 
-// Function for Conversation
-function conversion() {
-    var year = 2024; // You can replace this with user input
+$(document).ready(function(){
+    $('#addhand').click(function(){
+        var handset_name = $('#hname').val();
 
-    $.ajax({
-        url: 'http://localhost/o2crm/api/analytics.php',
-        type: 'GET',
-        data: { year: year, id: 'conversion' },
-        dataType: 'json',
-        success: function(response) {
-            createCharts(response); // Call createCharts function with the response data
-        },
-        error: function(xhr, status, error) {
-            console.error(xhr.responseText);
-            // Handle error gracefully here
-        }
-    });
-
-    // Function to create charts for customers and conversions
-    function createCharts(data) {
-        createChart(data.customers, 'lineChart', 'Total Customers', 'rgba(54, 162, 235, 0.5)', 'rgba(54, 162, 235, 1)');
-        createChart(data.conversions, 'conversion', 'Total Conversions', 'rgba(255, 99, 132, 0.5)', 'rgba(255, 99, 132, 1)');
-    }
-
-    // Function to create a chart
-    function createChart(data, canvasId, label, backgroundColor, borderColor) {
-        var ctx = document.getElementById(canvasId).getContext('2d');
-        var chartData = {
-            labels: [],
-            datasets: [{
-                label: label,
-                backgroundColor: backgroundColor,
-                borderColor: borderColor,
-                borderWidth: 1,
-                data: []
-            }]
-        };
-
-        data.forEach(function(item) {
-            chartData.labels.push(item.month_name);
-            chartData.datasets[0].data.push(item.total_customers || item.total_conversions);
-        });
-
-        var lineChart = new Chart(ctx, {
-            type: 'line',
-            data: chartData,
-            options: {
-                scales: {
-                    yAxes: [{
-                        ticks: {
-                            beginAtZero: true
-                        }
-                    }]
-                }
+        $.ajax({
+            url: 'http://localhost/o2crm/api/insert.php', // Specify the URL of the server-side script
+            method: 'POST', // Specify the method (POST or GET)
+            data: {hname: handset_name, for:'handset'}, // Pass the data to the server-side script
+            success: function(response){
+                // Handle the success response here
+                console.log(response);
+            },
+            error: function(xhr, status, error){
+                // Handle errors here
+                console.error(xhr, status, error);
             }
         });
-    }
-}
-</script>
+    });
+});
 
+//for color adding 
+$(document).ready(function(){
+    $('#addcolor').click(function(){
+        var handset_name = $('#hcolor').val();
+
+        $.ajax({
+            url: 'http://localhost/o2crm/api/insert.php', // Specify the URL of the server-side script
+            method: 'POST', // Specify the method (POST or GET)
+            data: {hcolor: handset_name, for:'hcolor'}, // Pass the data to the server-side script
+            success: function(response){
+                // Handle the success response here
+                console.log(response);
+            },
+            error: function(xhr, status, error){
+                // Handle errors here
+                console.error(xhr, status, error);
+            }
+        });
+    });
+});
+</script>
 
           <!-- content-wrapper ends -->
         <!-- Footer  -->

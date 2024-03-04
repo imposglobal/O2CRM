@@ -44,13 +44,11 @@ function insert_customer_by_agent($custData, $conn,$agentname) {
     }
 }
 
-//for data insert
-
+//for handset insert
 function handsetInsert($conn,$hansetname){
     $date = date('Y-m-d');
     // Creating the SQL query
-    $query = "INSERT INTO handsets (handsetname, created_date) 
-          VALUES ('$hansetname', '$date')";
+    $query = "INSERT INTO handsets (handsetname, created_date) VALUES ('$hansetname', '$date')";
     
     // Executing the query
     $result = mysqli_query($conn, $query);
@@ -64,20 +62,46 @@ function handsetInsert($conn,$hansetname){
     }
 }
 
+//for handset color insert
+function handsetcolor($conn,$hcolor){
+    $date = date('Y-m-d');
+    // Creating the SQL query
+    $query = "INSERT INTO hcolor (hcolor, created_date) VALUES ('$hcolor', '$date')";
+    
+    // Executing the query
+    $result = mysqli_query($conn, $query);
+    
+    // Checking if the query was successful
+    if ($result) {
+        return true; // Return true if insertion is successful
+    } else {
+        // If insertion fails, return the MySQL error
+        return mysqli_error($conn);
+    }
+} 
+
 //check the url call by agents login
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     //for handset
     if($_REQUEST['for']=="handset"){
-        $result = handsetInsert($conn,$_POST['hansetname']);
+        $result = handsetInsert($conn,$_POST['hname']);
         if ($result === true) {
             echo "Handset Added Successfully";
         } else {
             echo "Error Adding Customer: " . $result;
         }
-    }
 
-    //for add customer
-    if($_REQUEST['by_agent'] == "add_agent"){
+    //for Color
+    }elseif($_REQUEST['for']=="hcolor"){
+        $result = handsetcolor($conn,$_POST['hcolor']);
+        if ($result === true) {
+            echo "Handset Color Added Successfully";
+        } else {
+            echo "Error Adding Customer: " . $result;
+        }
+
+    //add agent
+    }elseif($_REQUEST['by_agent'] == "add_agent"){
         $custData = array(
             'fname' => $_POST['fname'],
             'lname' => $_POST['lname'],

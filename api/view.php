@@ -134,7 +134,21 @@ function showHandset($conn){
         echo'<tr>';
         echo'<th scope="row">'.$no++.'</th>';
         echo'<td>'.$handest['handsetname'].'</td>';
-        echo'<td><a style="font-size:20px" href="http://localhost/o2crm/api/delete.php?id='.$handest['hid'].'"><i class="mdi mdi-playlist-remove"></i></a></td>';
+        echo'<td><a style="font-size:20px" href="http://localhost/o2crm/api/delete.php?for=handset&id='.$handest['hid'].'"><i class="mdi mdi-playlist-remove"></i></a></td>';
+        echo'</tr>';
+    }
+}
+
+function showColors($conn){
+    $query = "SELECT * FROM hcolor ORDER BY hcid DESC";
+    $result = mysqli_query($conn, $query);
+    $colors = mysqli_fetch_all($result, MYSQLI_ASSOC);
+    $no=1;
+    foreach ($colors as $color) {
+        echo'<tr>';
+        echo'<th scope="row">'.$no++.'</th>';
+        echo'<td>'.$color['hcolor'].'</td>';
+        echo'<td><a style="font-size:20px" href="http://localhost/o2crm/api/delete.php?for=handset&id='.$color['hcid'].'"><i class="mdi mdi-playlist-remove"></i></a></td>';
         echo'</tr>';
     }
 }
