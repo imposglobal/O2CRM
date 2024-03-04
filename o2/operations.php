@@ -1,4 +1,4 @@
-<title>Analytics</title>
+<title>Operations</title>
 <style>
     span#result {
     font-size: 12px;
@@ -27,7 +27,6 @@
                     <p class="m-0">ADE-00234</p>
                   </a>
                 </div>
-                
               </div>
             </div>
             <!-- first row starts here -->
@@ -36,16 +35,14 @@
                 <div class="col-lg-6 grid-margin stretch-card">
                     <div class="card">
                     <div class="card-body">
-                        <h4 class="card-title">Customers</h4>
-                        <canvas id="lineChart" ></canvas>
+                       
                     </div>
                     </div>
                 </div>
                 <div class="col-lg-6 grid-margin stretch-card">
                     <div class="card">
                     <div class="card-body">
-                        <h4 class="card-title">Conversions</h4>
-                        <canvas id="conversion" ></canvas>
+                        
                     </div>
                     </div>
                 </div>
