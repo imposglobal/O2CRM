@@ -1,48 +1,108 @@
 <?php
 require('db.php');
 
+// Function to fetch customer analytics
+function customerAnalytics($conn, $year){
+    // SQL query for customers
+    $sql = "SELECT 
+                EXTRACT(MONTH FROM agent_add_cust_date) AS month,
+                DATE_FORMAT(agent_add_cust_date, '%M') AS month_name,
+                COUNT(DISTINCT cid) AS total_customers
+            FROM 
+                customers
+            WHERE 
+                YEAR(agent_add_cust_date) = ?
+            GROUP BY 
+                EXTRACT(MONTH FROM agent_add_cust_date),
+                DATE_FORMAT(agent_add_cust_date, '%M')
+            ORDER BY 
+                EXTRACT(MONTH FROM agent_add_cust_date)";
+
+    // Prepare the statement
+    $stmt = $conn->prepare($sql);
+
+    // Bind the parameter
+    $stmt->bind_param("i", $year);
+
+    // Execute the statement
+    $stmt->execute();
+
+    // Get the result
+    $result = $stmt->get_result();
+
+    // Fetch the results
+    $results = [];
+    while ($row = $result->fetch_assoc()) {
+        $results[] = $row;
+    }
+
+    // Close statement
+    $stmt->close();
+
+    // Return results
+    return $results;
+}
+
+// Function to fetch conversion analytics
+function conversionAnalytics($conn, $year){
+    // SQL query for conversions
+    $sql = "SELECT 
+                EXTRACT(MONTH FROM agent_add_cust_date) AS month,
+                DATE_FORMAT(agent_add_cust_date, '%M') AS month_name,
+                COUNT(*) AS total_conversions
+            FROM 
+                customers
+            WHERE 
+                YEAR(agent_add_cust_date) = ?
+            GROUP BY 
+                EXTRACT(MONTH FROM agent_add_cust_date),
+                DATE_FORMAT(agent_add_cust_date, '%M')
+            ORDER BY 
+                EXTRACT(MONTH FROM agent_add_cust_date)";
+
+    // Prepare the statement
+    $stmt = $conn->prepare($sql);
+
+    // Bind the parameter
+    $stmt->bind_param("i", $year);
+
+    // Execute the statement
+    $stmt->execute();
+
+    // Get the result
+    $result = $stmt->get_result();
+
+    // Fetch the results
+    $results = [];
+    while ($row = $result->fetch_assoc()) {
+        $results[] = $row;
+    }
+
+    // Close statement
+    $stmt->close();
+
+    // Return results
+    return $results;
+}
+
 // User-provided year parameter
 $user_year = "2024";
 
-// SQL query
-$sql = "SELECT 
-            EXTRACT(MONTH FROM agent_add_cust_date) AS month,
-            DATE_FORMAT(agent_add_cust_date, '%M') AS month_name,
-            COUNT(DISTINCT cid) AS total_customers
-        FROM 
-            customers
-        WHERE 
-            YEAR(agent_add_cust_date) = ?
-        GROUP BY 
-            EXTRACT(MONTH FROM agent_add_cust_date),
-            DATE_FORMAT(agent_add_cust_date, '%M')
-        ORDER BY 
-            EXTRACT(MONTH FROM agent_add_cust_date)";
+// Fetch customer analytics
+$customerData = customerAnalytics($conn, $user_year);
 
-// Prepare the statement
-$stmt = $conn->prepare($sql);
-
-// Bind the parameter
-$stmt->bind_param("i", $user_year);
-
-// Execute the statement
-$stmt->execute();
-
-// Get the result
-$result = $stmt->get_result();
-
-// Fetch the results
-$results = [];
-while ($row = $result->fetch_assoc()) {
-    $results[] = $row;
-}
-
-// Close statement
-$stmt->close();
+// Fetch conversion analytics
+$conversionData = conversionAnalytics($conn, $user_year);
 
 // Close connection
 $conn->close();
 
-// Convert the results to JSON format
-echo json_encode($results);
+// Combine both results
+$result = [
+    'customers' => $customerData,
+    'conversions' => $conversionData
+];
+
+// Convert the combined results to JSON format
+echo json_encode($result);
 ?>

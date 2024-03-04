@@ -36,7 +36,7 @@
                 <div class="col-lg-6 grid-margin stretch-card">
                     <div class="card">
                     <div class="card-body">
-                        <h4 class="card-title">Customers chart</h4>
+                        <h4 class="card-title">Customers</h4>
                         <canvas id="lineChart" ></canvas>
                     </div>
                     </div>

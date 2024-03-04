@@ -103,8 +103,14 @@ label {
           </li>
           <li class="nav-item">
             <a class="nav-link" href="analytics.php">
-              <i class="mdi mdi-chart-bar menu-icon"></i>
+              <i class="mdi mdi-chart-areaspline menu-icon"></i>
               <span class="menu-title">Analytics</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="inputs.php">
+              <i class="mdi mdi-format-list-bulleted-type menu-icon"></i>
+              <span class="menu-title">Forms</span>
             </a>
           </li>
         </ul>
