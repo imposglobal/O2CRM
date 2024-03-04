@@ -6,6 +6,9 @@
     color: #fff;
     padding: 2px 10px;
 }
+table {
+  width: 100% !important;
+}
 </style>
       <!-- partial:partials/_sidebar.html -->
       <?php require('sidebar.php'); ?>
@@ -21,7 +24,7 @@
               <div class="header-right d-flex flex-wrap mt-2 mt-sm-0">
                 <div class="d-flex align-items-center">
                   <a href="#">
-                    <p class="m-0 pr-3">Analytics</p>
+                    <p class="m-0 pr-3">Operations</p>
                   </a>
                   <a class="pl-3 mr-4" href="#">
                     <p class="m-0">ADE-00234</p>
@@ -29,22 +32,56 @@
                 </div>
               </div>
             </div>
-            <!-- first row starts here -->
-            <div class="container card py-5 px-4 mb-5 mt-2">
             <div class="row">
-                <div class="col-lg-6 grid-margin stretch-card">
-                    <div class="card">
-                    <div class="card-body">
-                       
-                    </div>
+                <div class="col-lg-8">
+                    
+                </div>
+                <div class="col-lg-4">
+                    <div class="form-group">
+                        <label>Select Options</label>
+                        <select class="form-control" id="smenu">
+                            <option selected>Select Options</option>
+                            <option value="Handset">Handset</option>
+                            <option value="Package">Package</option>
+                        </select>
                     </div>
                 </div>
-                <div class="col-lg-6 grid-margin stretch-card">
+            </div>
+            <!-- first row starts here -->
+            <div class="container card py-4 px-4 mb-5">
+                <div class="row">
+                <div class="col-lg-4 grid-margin stretch-card">
                     <div class="card">
-                    <div class="card-body">
-                        
+                        <div class="card-body">
+                        <h5>Add Handset</h5>
+                        <hr>
+                            <div class="form-group">
+                                    <label>Handset Name</label>
+                                    <input type="text" name="hname" class="form-control" id="hname"  placeholder="Samsung">
+                                    <button id="addcust" onclick="" class="form-control mt-3 btn-sm py-2 px-4 btn-primary"> Add Handset </button>
+                            </div>
+                            <hr>
+                            <div class="form-group">
+                                    <label>Handset Color</label>
+                                    <input type="text" name="hname" class="form-control" id="hname"  placeholder="Samsung">
+                                    <button id="addcust" onclick="" class="form-control mt-3 btn-sm py-2 px-4 btn-primary mb-md-0 mr-2"> Add Handset </button>
+                            </div>
+                        </div>
                     </div>
-                    </div>
+                </div>
+                <div class="col-lg-8">
+                <table class="table table-striped"> 
+                <thead>
+                        <tr>
+                        <th scope="col">#</th>
+                        <th scope="col"><b>Handset Name</b></th>
+                        <th scope="col"><b>Delete</b></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php showHandset($conn); ?>
+                    </tbody>
+                </table>
                 </div>
             </div>
          </div>

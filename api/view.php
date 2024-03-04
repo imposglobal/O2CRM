@@ -123,3 +123,18 @@ function displayUsersWithPagination($conn, $limit = 10) {
     // Close database connection
     mysqli_close($conn);
 }
+
+
+function showHandset($conn){
+    $query = "SELECT * FROM handsets ORDER BY hid DESC";
+    $result = mysqli_query($conn, $query);
+    $handsets = mysqli_fetch_all($result, MYSQLI_ASSOC);
+    $no=1;
+    foreach ($handsets as $handest) {
+        echo'<tr>';
+        echo'<th scope="row">'.$no++.'</th>';
+        echo'<td>'.$handest['handsetname'].'</td>';
+        echo'<td><a style="font-size:20px" href="http://localhost/o2crm/api/delete.php?id='.$handest['hid'].'"><i class="mdi mdi-playlist-remove"></i></a></td>';
+        echo'</tr>';
+    }
+}

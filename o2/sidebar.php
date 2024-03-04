@@ -108,9 +108,9 @@ label {
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="inputs.php">
+            <a class="nav-link" href="operations.php">
               <i class="mdi mdi-format-list-bulleted-type menu-icon"></i>
-              <span class="menu-title">Forms</span>
+              <span class="menu-title">Operations</span>
             </a>
           </li>
         </ul>
