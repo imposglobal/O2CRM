@@ -51,7 +51,7 @@ label {
 
     <link rel="stylesheet" href="../assets/css/demo_1/style.css" />
     <!-- End layout styles -->
-    <link rel="shortcut icon" href="../assets/images/favicon.png" />
+    <link rel="shortcut icon" href="https://imposglobal.com/wp-content/uploads/2021/10/cropped-Symbol_imposglobal-32x32.png" />
   </head>
   <body>
     <div class="container-scroller">

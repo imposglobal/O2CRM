@@ -1,6 +1,11 @@
 <?php
+if(!isset($_SESSION)) 
+{ 
+    session_start(); 
+} 
+$role = $_SESSION["role"];
+$agentname = $_SESSION["firstname"]." ".$_SESSION["lastname"];
 require('db.php');
-
 // Function to fetch customer analytics
 function customerAnalytics($conn, $year){
     // SQL query for customers
@@ -104,5 +109,5 @@ $result = [
 ];
 
 // Convert the combined results to JSON format
-echo json_encode($result);
+echo json_encode($result, JSON_PRETTY_PRINT);
 ?>

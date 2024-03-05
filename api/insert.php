@@ -80,6 +80,24 @@ function handsetcolor($conn,$hcolor){
     }
 } 
 
+//for Package insert
+function package($conn,$pname){
+    $date = date('Y-m-d');
+    // Creating the SQL query
+    $query = "INSERT INTO package (package_name, created_date) VALUES ('$pname', '$date')";
+    
+    // Executing the query
+    $result = mysqli_query($conn, $query);
+    
+    // Checking if the query was successful
+    if ($result) {
+        return true; // Return true if insertion is successful
+    } else {
+        // If insertion fails, return the MySQL error
+        return mysqli_error($conn);
+    }
+} 
+
 //check the url call by agents login
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     //for handset
@@ -99,8 +117,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         } else {
             echo "Error Adding Customer: " . $result;
         }
+    }elseif($_REQUEST['for']=="pname"){
+        $result = package($conn,$_POST['pkgname']);
+        if ($result === true) {
+            echo "Package Added Successfully";
+        } else {
+            echo "Error Adding Customer: " . $result;
+        }
 
-    //add agent
     }elseif($_REQUEST['by_agent'] == "add_agent"){
         $custData = array(
             'fname' => $_POST['fname'],

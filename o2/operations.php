@@ -9,6 +9,24 @@
 table {
   width: 100% !important;
 }
+.theight{
+    height: auto;
+    overflow: auto;
+    max-height: 280px;
+}
+::-webkit-scrollbar{
+        height: 4px;
+        width: 4px;
+        background: gray;
+    }
+    ::-webkit-scrollbar-thumb:horizontal{
+        background: #272727;
+        border-radius: 10px;
+    }
+    ::-webkit-scrollbar-thumb:vertical{
+        background: #272727;
+        border-radius: 10px;
+    }
 </style>
       <!-- partial:partials/_sidebar.html -->
       <?php require('sidebar.php'); ?>
@@ -58,7 +76,12 @@ table {
                                     <input type="text" name="hname" class="form-control" id="hname"  placeholder="Samsung">
                                     <button id="addhand" onclick="" class="form-control mt-3 btn-sm py-2 px-4 btn-primary"> Add Handset </button>
                             </div>
-                            <hr>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 grid-margin stretch-card">
+                    <div class="card">
+                        <div class="card-body">
                             <div class="form-group">
                                     <label>Handset Color</label>
                                     <input type="text" name="hcolor" class="form-control" id="hcolor"  placeholder="Samsung">
@@ -67,8 +90,19 @@ table {
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-8">
-                    <div style="height: 280px; overflow: auto;" class="card">
+                <div class="col-lg-4 grid-margin stretch-card">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="form-group">
+                                    <label>Package Name</label>
+                                    <input type="text" name="hcolor" class="form-control" id="pkgname"  placeholder="unlim £18 -24 Months">
+                                    <button id="addpkg" onclick="" class="form-control mt-3 btn-sm py-2 px-4 btn-primary mb-md-0 mr-2"> Add Handset </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="card theight">
                         <table class="table table-striped"> 
                             <thead>
                             <tr>
@@ -81,12 +115,13 @@ table {
                                 <?php showHandset($conn); ?>
                             </tbody>
                         </table>
-                    </div><br>
-                    <hr>
-                    <div class="mt-4" style="height: 280px; overflow: auto;" class="card">
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="theight card">
                         <table class="table table-striped"> 
                             <thead>
-                            <tr style="background:#272727" class="text-white">
+                            <tr>
                             <th scope="col">#</th>
                             <th scope="col"><b>Handset Colors</b></th>
                             <th scope="col"><b>Delete</b></th>
@@ -97,6 +132,23 @@ table {
                             </tbody>
                         </table>
                     </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="card  theight">
+                        <table class="table table-striped"> 
+                            <thead>
+                            <tr>
+                            <th scope="col">#</th>
+                            <th scope="col"><b>Package Name</b></th>
+                            <th scope="col"><b>Delete</b></th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                                <?php showPackage($conn); ?>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
                 </div>
             </div>
          </div>
@@ -113,41 +165,60 @@ $(document).ready(function(){
         var handset_name = $('#hname').val();
 
         $.ajax({
-            url: 'http://localhost/o2crm/api/insert.php', // Specify the URL of the server-side script
-            method: 'POST', // Specify the method (POST or GET)
-            data: {hname: handset_name, for:'handset'}, // Pass the data to the server-side script
+            url: 'http://localhost/o2crm/api/insert.php',
+            method: 'POST',
+            data: {hname: handset_name, for:'handset'},
             success: function(response){
-                // Handle the success response here
                 console.log(response);
+                alert("Handset added successfully!");
+                window.location.reload(); // Reload the page
             },
             error: function(xhr, status, error){
-                // Handle errors here
                 console.error(xhr, status, error);
+                alert("Error occurred while adding handset.");
             }
         });
     });
-});
 
-//for color adding 
-$(document).ready(function(){
     $('#addcolor').click(function(){
-        var handset_name = $('#hcolor').val();
+        var color_name = $('#hcolor').val();
 
         $.ajax({
-            url: 'http://localhost/o2crm/api/insert.php', // Specify the URL of the server-side script
-            method: 'POST', // Specify the method (POST or GET)
-            data: {hcolor: handset_name, for:'hcolor'}, // Pass the data to the server-side script
+            url: 'http://localhost/o2crm/api/insert.php',
+            method: 'POST',
+            data: {hcolor: color_name, for:'hcolor'},
             success: function(response){
-                // Handle the success response here
                 console.log(response);
+                alert("Color added successfully!");
+                window.location.reload(); // Reload the page
             },
             error: function(xhr, status, error){
-                // Handle errors here
                 console.error(xhr, status, error);
+                alert("Error occurred while adding color.");
+            }
+        });
+    });
+
+    $('#addpkg').click(function(){
+        var pkgname = $('#pkgname').val();
+
+        $.ajax({
+            url: 'http://localhost/o2crm/api/insert.php',
+            method: 'POST',
+            data: {pkgname: pkgname, for:'pname'},
+            success: function(response){
+                console.log(response);
+                alert("Package added successfully!");
+                window.location.reload(); // Reload the page
+            },
+            error: function(xhr, status, error){
+                console.error(xhr, status, error);
+                alert("Error occurred while adding package.");
             }
         });
     });
 });
+
 </script>
 
           <!-- content-wrapper ends -->

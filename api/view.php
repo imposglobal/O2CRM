@@ -13,9 +13,9 @@ function displayUsersWithPagination($conn, $limit = 10) {
 
 
     // Display users in a table
-    echo '<div class="table-responsive px-3">';
+    echo '<div class="table-responsive card mt-3 mx-3">';
     echo '<table class="table table-hover bg-light table-bordered mb-3">';
-    echo '<thead style="background:#272727;color:#fff">';
+    echo '<thead">';
     echo '<tr>';
     echo '<th>ID</th>';
     echo '<th>Customer Name</th>';
@@ -131,12 +131,45 @@ function showHandset($conn){
     $handsets = mysqli_fetch_all($result, MYSQLI_ASSOC);
     $no=1;
     foreach ($handsets as $handest) {
-        echo'<tr>';
-        echo'<th scope="row">'.$no++.'</th>';
-        echo'<td>'.$handest['handsetname'].'</td>';
-        echo'<td><a style="font-size:20px" href="http://localhost/o2crm/api/delete.php?for=handset&id='.$handest['hid'].'"><i class="mdi mdi-playlist-remove"></i></a></td>';
-        echo'</tr>';
+        echo '<tr>';
+        echo '<th scope="row">'.$no++.'</th>';
+        echo '<td>'.$handest['handsetname'].'</td>';
+        echo '<td><a style="font-size:20px;color:red" href="#" onclick="confirmDeletehs('.$handest['hid'].')"><i class="mdi mdi-playlist-remove"></i></a></td>';
+        echo '</tr>';
     }
+    // JavaScript function for confirmation
+    echo '<script>
+    function confirmDeletehs(id) {
+        if (confirm("Are you sure you want to delete this record?")) {
+            window.location.href = "http://localhost/o2crm/api/delete.php?for=handset&id=" + id;
+        }
+    }
+    </script>';
+
+}
+
+
+function showPackage($conn){
+    $query = "SELECT * FROM package ORDER BY pid DESC";
+    $result = mysqli_query($conn, $query);
+    $packages = mysqli_fetch_all($result, MYSQLI_ASSOC);
+    $no=1;
+    foreach ($packages as $package) {
+        echo '<tr>';
+        echo '<th scope="row">'.$no++.'</th>';
+        echo '<td>'.$package['package_name'].'</td>';
+        echo '<td><a style="font-size:20px;color:red" href="#" onclick="confirmDeletepkg('.$package['pid'].')"><i class="mdi mdi-playlist-remove"></i></a></td>';
+        echo '</tr>';
+    }
+    // JavaScript function for confirmation
+    echo '<script>
+    function confirmDeletepkg(id) {
+        if (confirm("Are you sure you want to delete this record?")) {
+            window.location.href = "http://localhost/o2crm/api/delete.php?for=pname&id=" + id;
+        }
+    }
+    </script>';
+
 }
 
 function showColors($conn){
@@ -145,10 +178,20 @@ function showColors($conn){
     $colors = mysqli_fetch_all($result, MYSQLI_ASSOC);
     $no=1;
     foreach ($colors as $color) {
-        echo'<tr>';
-        echo'<th scope="row">'.$no++.'</th>';
-        echo'<td>'.$color['hcolor'].'</td>';
-        echo'<td><a style="font-size:20px" href="http://localhost/o2crm/api/delete.php?for=handset&id='.$color['hcid'].'"><i class="mdi mdi-playlist-remove"></i></a></td>';
-        echo'</tr>';
+        echo '<tr>';
+        echo '<th scope="row">'.$no++.'</th>';
+        echo '<td>'.$color['hcolor'].'</td>';
+        echo '<td><a style="font-size:20px;color:red" href="#" onclick="confirmDelete('.$color['hcid'].')"><i class="mdi mdi-playlist-remove"></i></a></td>';
+        echo '</tr>';
     }
+    // JavaScript function for confirmation
+    echo '<script>
+    function confirmDelete(id) {
+        if (confirm("Are you sure you want to delete this record?")) {
+            window.location.href = "http://localhost/o2crm/api/delete.php?for=hcolor&id=" + id;
+        }
+    }
+    </script>';
 }
+
+
