@@ -16,37 +16,26 @@ function customerAnalytics($conn, $year){
             FROM 
                 customers
             WHERE 
-                YEAR(agent_add_cust_date) = ?
+                YEAR(agent_add_cust_date) = '$year'
             GROUP BY 
                 EXTRACT(MONTH FROM agent_add_cust_date),
                 DATE_FORMAT(agent_add_cust_date, '%M')
             ORDER BY 
                 EXTRACT(MONTH FROM agent_add_cust_date)";
 
-    // Prepare the statement
-    $stmt = $conn->prepare($sql);
+    $result = mysqli_query($conn, $sql);
 
-    // Bind the parameter
-    $stmt->bind_param("i", $year);
-
-    // Execute the statement
-    $stmt->execute();
-
-    // Get the result
-    $result = $stmt->get_result();
-
-    // Fetch the results
-    $results = [];
-    while ($row = $result->fetch_assoc()) {
-        $results[] = $row;
+    // Check if query executed successfully
+    if ($result) {
+        $results = mysqli_fetch_all($result, MYSQLI_ASSOC);
+    } else {
+        $results = []; // or handle the error
     }
-
-    // Close statement
-    $stmt->close();
-
+    
     // Return results
     return $results;
 }
+
 
 // Function to fetch conversion analytics
 function conversionAnalytics($conn, $year){
@@ -109,5 +98,5 @@ $result = [
 ];
 
 // Convert the combined results to JSON format
-echo json_encode($result, JSON_PRETTY_PRINT);
+echo json_encode($result);
 ?>
