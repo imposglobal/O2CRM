@@ -1,3 +1,4 @@
+<?php require('../api/sessions.php') ?>
 <title>Manage Users</title>
 <style>
     span#result {

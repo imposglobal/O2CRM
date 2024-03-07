@@ -1,3 +1,4 @@
+<?php require('../api/sessions.php') ?>
 <title>Add Customer - Customer Stage</title>
 <style>
     span#result {

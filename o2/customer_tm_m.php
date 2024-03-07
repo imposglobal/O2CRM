@@ -1,3 +1,4 @@
+<?php require('../api/sessions.php') ?>
       <!-- partial:partials/_sidebar.html -->
       <title>TL/Managers - Customer Stage III</title>
       <?php require('sidebar.php'); ?>

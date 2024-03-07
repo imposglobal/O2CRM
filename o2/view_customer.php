@@ -1,3 +1,4 @@
+<?php require('../api/sessions.php') ?>
 <title>View Customer </title>
       <!-- partial:partials/_sidebar.html -->
       <?php require('sidebar.php'); ?>

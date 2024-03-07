@@ -1,25 +1,5 @@
-<?php
- if(!isset($_SESSION)) 
- { 
-     session_start(); 
- } 
- require('../api/db.php');
- require('../api/functions.php');
- require('../api/view.php');
-// Check if user is not logged in, redirect to login page
-if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
-    header("location: ../index.php");
-    exit;
-}
-
-// Access session variables
-$userId = $_SESSION["uid"];
-$username = $_SESSION["username"];
-$firstname = $_SESSION["firstname"];
-$lastname = $_SESSION["lastname"];
-$role = $_SESSION["role"];
-?>
-      <?php require('sidebar.php'); ?>
+<?php require('../api/sessions.php') ?>
+<?php require('sidebar.php'); ?>
       <!-- partial -->
       <title>Dashboard - O2 CRM</title>
       

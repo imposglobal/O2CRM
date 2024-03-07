@@ -1,4 +1,5 @@
 
+<?php require('../api/sessions.php') ?>
       <!-- partial:partials/_sidebar.html -->
       <title>Advisor - Customer Stage II</title>
       <?php require('sidebar.php'); ?>

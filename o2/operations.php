@@ -1,3 +1,4 @@
+<?php require('../api/sessions.php') ?>
 <title>Operations</title>
 <style>
     span#result {
