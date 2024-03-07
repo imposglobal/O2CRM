@@ -153,7 +153,8 @@
             console.log("Search result: " + response);
 
             // Display the input value somewhere in your HTML document
-            if (response == "Duplicate Customer Found") {
+            if(response == "Duplicate Customer Found") {
+                console.log('dsd');
                 document.getElementById("addcust").disabled = true;
                 document.getElementById("addcust").style.cursor = "not-allowed";
 
