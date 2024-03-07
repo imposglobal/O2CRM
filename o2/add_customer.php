@@ -151,6 +151,12 @@
         success: function(response) {
             // Handle success response
             console.log("Search result: " + response);
+             // Use SweetAlert to display a success message
+             Swal.fire({
+                    icon: 'success',
+                    title: 'Success!',
+                    text: 'Status: ' + response
+                });
 
             // Display the input value somewhere in your HTML document
             if(response == "Duplicate Customer Found") {
@@ -158,12 +164,7 @@
                 document.getElementById("addcust").disabled = true;
                 document.getElementById("addcust").style.cursor = "not-allowed";
 
-                // Use SweetAlert to display a success message
-                Swal.fire({
-                    icon: 'success',
-                    title: 'Success!',
-                    text: 'Status: ' + response
-                });
+               
             } else {
                 document.getElementById("addcust").disabled = false;
                 document.getElementById("addcust").style.cursor = "pointer";
