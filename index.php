@@ -2,6 +2,8 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+  <link rel="shortcut icon" href="https://imposglobal.com/wp-content/uploads/2021/10/cropped-Symbol_imposglobal-32x32.png" />
+  
     <style>
       @import url('https://fonts.googleapis.com/css?family=Poppins');
 
@@ -282,7 +284,7 @@ input[type=text]:placeholder {
   <div class="wrapper fadeInDown">
   <div id="formContent">
     <!-- Tabs Titles -->
-    <h2 class="active"> O2 LMC d</h2>
+    <h2 class="active"> O2 LMC</h2>
     <!-- Icon -->
     <div class="fadeIn first">
       <h4>Welcome Back </h4>
