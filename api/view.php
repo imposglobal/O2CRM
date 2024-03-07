@@ -99,7 +99,7 @@ function displayUsersWithPagination($conn, $limit, $url) {
     echo '<script>
         function confirmDeleteCust(id) {
             if (confirm("Are you sure you want to delete this record?")) {
-                window.location.href = "'.$url.'/o2crm/api/delete.php?for=customer&id=" + id;
+                window.location.href = "'.$url.'/api/delete.php?for=customer&id=" + id;
             }
         }
     </script>';
@@ -153,7 +153,7 @@ function showHandset($conn,$url){
     echo '<script>
     function confirmDeletehs(id) {
         if (confirm("Are you sure you want to delete this record?")) {
-            window.location.href = "'.$url.'/o2crm/api/delete.php?for=handset&id=" + id;
+            window.location.href = "'.$url.'/api/delete.php?for=handset&id=" + id;
         }
     }
     </script>';
@@ -177,7 +177,7 @@ function showPackage($conn,$url){
     echo '<script>
     function confirmDeletepkg(id) {
         if (confirm("Are you sure you want to delete this record?")) {
-            window.location.href = "'.$url.'/o2crm/api/delete.php?for=pname&id=" + id;
+            window.location.href = "'.$url.'/api/delete.php?for=pname&id=" + id;
         }
     }
     </script>';
@@ -200,7 +200,7 @@ function showColors($conn,$url){
     echo '<script>
     function confirmDelete(id) {
         if (confirm("Are you sure you want to delete this record?")) {
-            window.location.href = "'.$url.'/o2crm/api/delete.php?for=hcolor&id=" + id;
+            window.location.href = "'.$url.'/api/delete.php?for=hcolor&id=" + id;
         }
     }
     </script>';
@@ -234,7 +234,7 @@ function showUsers($conn,$url){
     echo '<script>
     function confirmDelete(id) {
         if (confirm("Are you sure you want to delete this record?")) {
-            window.location.href = "'.$url.'/o2crm/api/delete.php?for=users&id=" + id;
+            window.location.href = "'.$url.'/api/delete.php?for=users&id=" + id;
         }
     }
     </script>';
