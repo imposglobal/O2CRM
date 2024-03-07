@@ -1,3 +1,4 @@
+<?php $url = baseurl(); ?>
 <!DOCTYPE html>
 <html lang="en">
   <head>

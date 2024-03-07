@@ -219,7 +219,7 @@ function conversion() {
     var year = 2024; // You can replace this with user input
 
     $.ajax({
-        url: 'http://localhost/o2crm/api/analytics.php',
+        url: '<?php echo $url; ?>/o2crm/api/analytics.php',
         type: 'GET',
         data: { year: year, id: 'conversion' },
         dataType: 'json',

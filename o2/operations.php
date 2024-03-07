@@ -166,7 +166,7 @@ $(document).ready(function(){
         var handset_name = $('#hname').val();
 
         $.ajax({
-            url: 'http://localhost/o2crm/api/insert.php',
+            url: '<?php echo $url; ?>/o2crm/api/insert.php',
             method: 'POST',
             data: {hname: handset_name, for:'handset'},
             success: function(response){
@@ -185,7 +185,7 @@ $(document).ready(function(){
         var color_name = $('#hcolor').val();
 
         $.ajax({
-            url: 'http://localhost/o2crm/api/insert.php',
+            url: '<?php echo $url; ?>/o2crm/api/insert.php',
             method: 'POST',
             data: {hcolor: color_name, for:'hcolor'},
             success: function(response){
@@ -204,7 +204,7 @@ $(document).ready(function(){
         var pkgname = $('#pkgname').val();
 
         $.ajax({
-            url: 'http://localhost/o2crm/api/insert.php',
+            url: '<?php echo $url; ?>/o2crm/api/insert.php',
             method: 'POST',
             data: {pkgname: pkgname, for:'pname'},
             success: function(response){

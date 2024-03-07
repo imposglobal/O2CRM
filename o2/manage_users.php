@@ -176,7 +176,7 @@ table {
         // AJAX request
         $.ajax({
             type: "POST",
-            url: "http://localhost/o2crm/api/insert.php",
+            url: "<?php echo $url; ?>/o2crm/api/insert.php",
             data: formData,
             processData: false,
             contentType: false,
