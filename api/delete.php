@@ -42,7 +42,7 @@ function deletUsers($conn,$id){
     $sql = "DELETE FROM users WHERE uid = $id";
 
     if(mysqli_query($conn, $sql)) {
-        echo '<script>alert("Record deleted successfully");window.location.href = "../o2/operations.php"</script>';
+        echo '<script>alert("Record deleted successfully");window.location.href = "../o2/manage_users.php"</script>';
     } else {
         echo "Error deleting record: " . mysqli_error($conn);
     }
