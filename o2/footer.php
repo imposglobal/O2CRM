@@ -62,7 +62,7 @@
                 // Perform AJAX request
                 $.ajax({
                     type: "POST",
-                    url: "<?php echo $url; ?>/o2crm/api/search.php", // Replace with your search endpoint
+                    url: "<?php echo $url; ?>/api/search.php", // Replace with your search endpoint
                     data: { id: customerId },
                     success: function(response) {
                         // Handle success response

@@ -246,7 +246,7 @@
 
         $.ajax({
             type: "POST",
-            url: "<?php echo $url; ?>/o2crm/api/update.php",
+            url: "<?php echo $url; ?>/api/update.php",
             data: formData,
             processData: false,
             contentType: false,
