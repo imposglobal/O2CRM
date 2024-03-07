@@ -143,30 +143,32 @@
     // Log the input value to the console
     console.log("Input value:", input);
     
-     // Perform AJAX request
-                $.ajax({
-                    type: "POST",
-                    url: "<?php echo $url; ?>/api/search.php", // Replace with your search endpoint
-                    data: { id: input },
-                    success: function(response) {
-                        // Handle success response
-                        console.log("Search result: " + response);
-                         // Display the input value somewhere in your HTML document
-                         if(response == "Duplicate Customer Found"){
-                            document.getElementById("addcust").disabled = true;
-                            document.getElementById("addcust").style.cursor = "not-allowed";
-                            Swal.fire(
-                            'Success!',
-                            'Status: ' + response,
-                            'success'
-                            );
-                         }else{
-                            document.getElementById("addcust").disabled = false;
-                            document.getElementById("addcust").style.cursor = "pointer";
-                         }
-                       
-                    }
+    // Perform AJAX request
+    $.ajax({
+        type: "POST",
+        url: "<?php echo $url; ?>/api/search.php", // Replace with your search endpoint
+        data: { id: input },
+        success: function(response) {
+            // Handle success response
+            console.log("Search result: " + response);
+
+            // Display the input value somewhere in your HTML document
+            if (response == "Duplicate Customer Found") {
+                document.getElementById("addcust").disabled = true;
+                document.getElementById("addcust").style.cursor = "not-allowed";
+
+                // Use SweetAlert to display a success message
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Success!',
+                    text: 'Status: ' + response
                 });
+            } else {
+                document.getElementById("addcust").disabled = false;
+                document.getElementById("addcust").style.cursor = "pointer";
+            }
+        }
+    });
 }
 
     // JavaScript function to send form data via AJAX
