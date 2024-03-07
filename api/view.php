@@ -1,6 +1,6 @@
 <?php
 // Function to retrieve users from the database with pagination and display them in a table
-function displayUsersWithPagination($conn, $limit = 10) {
+function displayUsersWithPagination($conn, $limit, $url) {
     
     // Pagination logic
     $page = isset($_GET['page']) ? $_GET['page'] : 1;
@@ -99,7 +99,7 @@ function displayUsersWithPagination($conn, $limit = 10) {
     echo '<script>
         function confirmDeleteCust(id) {
             if (confirm("Are you sure you want to delete this record?")) {
-                window.location.href = "<?php echo $url; ?>/o2crm/api/delete.php?for=customer&id=" + id;
+                window.location.href = "'.$url.'/o2crm/api/delete.php?for=customer&id=" + id;
             }
         }
     </script>';
@@ -137,7 +137,7 @@ function displayUsersWithPagination($conn, $limit = 10) {
 }
 
 
-function showHandset($conn){
+function showHandset($conn,$url){
     $query = "SELECT * FROM handsets ORDER BY hid DESC";
     $result = mysqli_query($conn, $query);
     $handsets = mysqli_fetch_all($result, MYSQLI_ASSOC);
@@ -153,7 +153,7 @@ function showHandset($conn){
     echo '<script>
     function confirmDeletehs(id) {
         if (confirm("Are you sure you want to delete this record?")) {
-            window.location.href = "<?php echo $url; ?>/o2crm/api/delete.php?for=handset&id=" + id;
+            window.location.href = "'.$url.'/o2crm/api/delete.php?for=handset&id=" + id;
         }
     }
     </script>';
@@ -161,7 +161,7 @@ function showHandset($conn){
 }
 
 
-function showPackage($conn){
+function showPackage($conn,$url){
     $query = "SELECT * FROM package ORDER BY pid DESC";
     $result = mysqli_query($conn, $query);
     $packages = mysqli_fetch_all($result, MYSQLI_ASSOC);
@@ -177,14 +177,14 @@ function showPackage($conn){
     echo '<script>
     function confirmDeletepkg(id) {
         if (confirm("Are you sure you want to delete this record?")) {
-            window.location.href = "<?php echo $url; ?>/o2crm/api/delete.php?for=pname&id=" + id;
+            window.location.href = "'.$url.'/o2crm/api/delete.php?for=pname&id=" + id;
         }
     }
     </script>';
 
 }
 
-function showColors($conn){
+function showColors($conn,$url){
     $query = "SELECT * FROM hcolor ORDER BY hcid DESC";
     $result = mysqli_query($conn, $query);
     $colors = mysqli_fetch_all($result, MYSQLI_ASSOC);
@@ -200,13 +200,13 @@ function showColors($conn){
     echo '<script>
     function confirmDelete(id) {
         if (confirm("Are you sure you want to delete this record?")) {
-            window.location.href = "<?php echo $url; ?>/o2crm/api/delete.php?for=hcolor&id=" + id;
+            window.location.href = "'.$url.'/o2crm/api/delete.php?for=hcolor&id=" + id;
         }
     }
     </script>';
 }
 
-function showUsers($conn){
+function showUsers($conn,$url){
     $query = "SELECT * FROM users ORDER BY uid DESC";
     $result = mysqli_query($conn, $query);
     $users = mysqli_fetch_all($result, MYSQLI_ASSOC);
@@ -234,7 +234,7 @@ function showUsers($conn){
     echo '<script>
     function confirmDelete(id) {
         if (confirm("Are you sure you want to delete this record?")) {
-            window.location.href = "<?php echo $url; ?>/o2crm/api/delete.php?for=users&id=" + id;
+            window.location.href = "'.$url.'/o2crm/api/delete.php?for=users&id=" + id;
         }
     }
     </script>';

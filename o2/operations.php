@@ -113,7 +113,7 @@ table {
                             </tr>
                             </thead>
                             <tbody>
-                                <?php showHandset($conn); ?>
+                                <?php showHandset($conn,$url); ?>
                             </tbody>
                         </table>
                     </div>
@@ -129,7 +129,7 @@ table {
                             </tr>
                             </thead>
                             <tbody>
-                                <?php showColors($conn); ?>
+                                <?php showColors($conn,$url); ?>
                             </tbody>
                         </table>
                     </div>
@@ -145,7 +145,7 @@ table {
                             </tr>
                             </thead>
                             <tbody>
-                                <?php showPackage($conn); ?>
+                                <?php showPackage($conn,$url); ?>
                             </tbody>
                         </table>
                     </div>

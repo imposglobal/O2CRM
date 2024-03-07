@@ -66,7 +66,7 @@
             <HR>
             <!-- first row starts here -->
             <div class="row">
-                <?php displayUsersWithPagination($conn); ?>
+                <?php displayUsersWithPagination($conn,'10',$url); ?>
             </div>
 
          <!-- Include jQuery from CDN -->
