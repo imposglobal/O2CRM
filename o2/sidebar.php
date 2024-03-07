@@ -234,7 +234,7 @@ label {
                   <div class="nav-profile-text">Account </div>
                 </a>
                 <div class="dropdown-menu center navbar-dropdown" aria-labelledby="profileDropdown">
-                  <a class="dropdown-item" href="#">
+                  <a class="dropdown-item" href="logout.php">
                     <i class="mdi mdi-transfer-right mr-3"></i>Log Out </a>
                 </div>
               </li>
