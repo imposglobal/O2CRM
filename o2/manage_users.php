@@ -116,7 +116,7 @@ table {
                             </tr>
                             </thead>
                             <tbody>
-                                <?php showUsers($conn); ?>
+                                <?php showUsers($conn,$url); ?>
                             </tbody>
                         </table>
                     </div>
