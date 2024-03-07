@@ -1,8 +1,7 @@
-
-<title>Dashboard - O2 CRM</title>
-      <!-- partial:partials/_sidebar.html -->
+<!-- partial:partials/_sidebar.html -->
       <?php require('sidebar.php'); ?>
       <!-- partial -->
+      <title>Dashboard - O2 CRM</title>
       
         <div class="main-panel">
           <div class="content-wrapper pb-0">
