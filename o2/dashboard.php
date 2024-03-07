@@ -184,51 +184,97 @@
             </div>
 
             <!-- chart row starts here -->
+            
             <div class="row">
-              <div class="col-sm-6 stretch-card grid-margin">
-                <div class="card">
-                  <div class="card-body">
-                    <div class="d-flex justify-content-between">
-                      <div class="card-title"> Customers <small class="d-block text-muted">August 01 - August 31</small>
-                      </div>
-                      <div class="d-flex text-muted font-20">
-                        <i class="mdi mdi-printer mouse-pointer"></i>
-                        <i class="mdi mdi-help-circle-outline ml-2 mouse-pointer"></i>
-                      </div>
+                <div class="col-lg-6 grid-margin stretch-card">
+                    <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">Customers chart</h4>
+                        <canvas id="lineChart" ></canvas>
                     </div>
-                    <h3 class="font-weight-bold mb-0"> 2,409 <span class="text-success h5">4,5%<i class="mdi mdi-arrow-up"></i></span>
-                    </h3>
-                    <span class="text-muted font-13">Avg customers/Day</span>
-                    <div class="line-chart-wrapper">
-                      <canvas id="linechart" height="80"></canvas>
                     </div>
-                  </div>
                 </div>
-              </div>
-              <div class="col-sm-6 stretch-card grid-margin">
-                <div class="card">
-                  <div class="card-body">
-                    <div class="d-flex justify-content-between">
-                      <div class="card-title"> Conversions <small class="d-block text-muted">August 01 - August 31</small>
-                      </div>
-                      <div class="d-flex text-muted font-20">
-                        <i class="mdi mdi-printer mouse-pointer"></i>
-                        <i class="mdi mdi-help-circle-outline ml-2 mouse-pointer"></i>
-                      </div>
+                <div class="col-lg-6 grid-margin stretch-card">
+                    <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">Conversions</h4>
+                        <canvas id="conversion" ></canvas>
                     </div>
-                    <h3 class="font-weight-bold mb-0"> 0.40% <span class="text-success h5">0.20%<i class="mdi mdi-arrow-up"></i></span>
-                    </h3>
-                    <span class="text-muted font-13">Avg customers/Day</span>
-                    <div class="bar-chart-wrapper">
-                      <canvas id="barchart" height="80"></canvas>
                     </div>
-                  </div>
                 </div>
-              </div>
             </div>
 
-           
-           
+ <!-- Include jQuery from CDN -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<!-- Chart.js -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+$(document).ready(function() {
+    // Call the conversion function when the document is ready
+    conversion();
+});
+
+// Function for Conversation
+function conversion() {
+    var year = 2024; // You can replace this with user input
+
+    $.ajax({
+        url: 'http://localhost/o2crm/api/analytics.php',
+        type: 'GET',
+        data: { year: year, id: 'conversion' },
+        dataType: 'json',
+        success: function(response) {
+            createCharts(response); // Call createCharts function with the response data
+        },
+        error: function(xhr, status, error) {
+            console.error(xhr.responseText);
+            // Handle error gracefully here
+        }
+    });
+
+    // Function to create charts for customers and conversions
+    function createCharts(data) {
+        createChart(data.customers, 'lineChart', 'Total Customers', 'rgba(54, 162, 235, 0.5)', 'rgba(54, 162, 235, 1)');
+        createChart(data.conversions, 'conversion', 'Total Conversions', 'rgba(255, 99, 132, 0.5)', 'rgba(255, 99, 132, 1)');
+    }
+
+    // Function to create a chart
+    function createChart(data, canvasId, label, backgroundColor, borderColor) {
+        var ctx = document.getElementById(canvasId).getContext('2d');
+        var chartData = {
+            labels: [],
+            datasets: [{
+                label: label,
+                backgroundColor: backgroundColor,
+                borderColor: borderColor,
+                borderWidth: 1,
+                data: []
+            }]
+        };
+
+        data.forEach(function(item) {
+            chartData.labels.push(item.month_name);
+            chartData.datasets[0].data.push(item.total_customers || item.total_conversions);
+        });
+
+        var lineChart = new Chart(ctx, {
+            type: 'line',
+            data: chartData,
+            options: {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }]
+                }
+            }
+        });
+    }
+}
+</script>
+
           <!-- content-wrapper ends -->
         <!-- Footer  -->
         <?php require('footer.php'); ?>

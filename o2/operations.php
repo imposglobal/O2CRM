@@ -57,10 +57,10 @@ table {
                 <div class="col-lg-4">
                     <div class="form-group">
                         <label>Select Options</label>
-                        <select class="form-control" id="smenu">
+                        <select class="form-control" id="smenu"  onchange="redirectToPage()">
                             <option selected>Select Options</option>
-                            <option value="Handset">Handset | Color | Package</option>
-                            <option value="Package">Agents</option>
+                            <option value="handset">Handset | Color | Package</option>
+                            <option value="manage">Manage Users</option>
                         </select>
                     </div>
                 </div>
@@ -218,6 +218,23 @@ $(document).ready(function(){
         });
     });
 });
+
+function redirectToPage() {
+    var selectElement = document.getElementById('smenu');
+    var selectedOption = selectElement.options[selectElement.selectedIndex].value;
+    console.log('selectedOption');
+    switch(selectedOption) {
+        case 'handset':
+            window.location.href = 'operations.php';
+            break;
+        case 'manage':
+            window.location.href = 'manage_users.php';
+            break;
+        default:
+            // If none of the above options match, do nothing
+            break;
+    }
+}
 
 </script>
 

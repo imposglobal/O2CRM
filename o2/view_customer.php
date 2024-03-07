@@ -12,6 +12,9 @@
         background: #272727;
         border-radius: 10px;
     }
+    a.text-white.px-3.py-1.rounded {
+    font-size: 12px !important;
+}
     <?php
       if($role == 1){
         echo 'th.ag {

@@ -27,6 +27,7 @@ function displayUsersWithPagination($conn, $limit = 10) {
     echo '<th class="ag tm sp">Support</th>';
     echo '<th>View Data</th>';
     echo '<th>Timeline</th>';
+    echo '<th>Delete</th>';
     echo '</tr>';
     echo '</thead>';
     echo '<tbody>';
@@ -86,11 +87,22 @@ function displayUsersWithPagination($conn, $limit = 10) {
         <i style="color:black; font-size:16px" class="mdi mdi-timetable text-dark"></i> Timeline
         </a>
         </td>';
+        echo '<td> <button href="" class="bg-danger text-white px-3 py-1 rounded" onclick="confirmDeleteCust('.$user['cid'].')">
+        <i style="color:#fff; font-size:16px" class="mdi mdi-account-remove"></i> Delete
+        </button>
+        </td>';
         echo '</tr>';
     }
     echo '</tbody>';
     echo '</table>';
     echo '</div>';
+    echo '<script>
+        function confirmDeleteCust(id) {
+            if (confirm("Are you sure you want to delete this record?")) {
+                window.location.href = "http://localhost/o2crm/api/delete.php?for=customer&id=" + id;
+            }
+        }
+    </script>';
 
     // Pagination
     $total_users_query = "SELECT COUNT(*) AS total FROM customers";
@@ -189,6 +201,40 @@ function showColors($conn){
     function confirmDelete(id) {
         if (confirm("Are you sure you want to delete this record?")) {
             window.location.href = "http://localhost/o2crm/api/delete.php?for=hcolor&id=" + id;
+        }
+    }
+    </script>';
+}
+
+function showUsers($conn){
+    $query = "SELECT * FROM users ORDER BY uid DESC";
+    $result = mysqli_query($conn, $query);
+    $users = mysqli_fetch_all($result, MYSQLI_ASSOC);
+    $no=1;
+    foreach ($users as $user) {
+        // Declaring Roles
+        $role = $user['role'];
+        if($role == 1){
+            $desg = "Agent";
+        }elseif($role == 2){
+            $desg = "Advisor";
+        }elseif($role == 3){
+            $desg = "TL/Manager";
+        }
+        echo '<tr>';
+        echo '<th scope="row">'.$no++.'</th>';
+        echo '<td>'.$user['firstname']." ".$user['lastname'].'</td>';
+        echo '<td>'.$user['username'].'</td>';
+        echo '<td>'.$user['password'].'</td>';
+        echo '<td>'.$desg.'</td>';
+        echo '<td><a style="font-size:20px;color:red" href="#" onclick="confirmDelete('.$user['uid'].')"><i class="mdi mdi-playlist-remove"></i></a></td>';
+        echo '</tr>';
+    }
+    // JavaScript function for confirmation
+    echo '<script>
+    function confirmDelete(id) {
+        if (confirm("Are you sure you want to delete this record?")) {
+            window.location.href = "http://localhost/o2crm/api/delete.php?for=users&id=" + id;
         }
     }
     </script>';

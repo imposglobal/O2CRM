@@ -6,6 +6,7 @@
     color: #fff;
     padding: 2px 10px;
 }
+
 </style>
       <!-- partial:partials/_sidebar.html -->
       <?php require('sidebar.php'); ?>
@@ -124,7 +125,7 @@
                     <div class="col-lg-4">
                         <div class="form-group mt-2">
                         <label></label>
-                            <input type="hidden" name="by_agent" value="add_agent">
+                            <input type="hidden" name="for" value="add_agent">
                             <button id="addcust" onclick="submitFormData(event)" class="form-control btn-sm py-2 mt-1 px-4 btn-primary mb-2 mb-md-0 mr-2"> Add Record </button>
                         </div>
                     </div>
@@ -208,7 +209,7 @@
                 Swal.fire({
                     icon: 'success',
                     title: 'Success',
-                    text: 'Data submitted successfully' + response,
+                    text: 'Status' + response,
                 }).then(function() {
                     // Redirect the user to another page after the alert is closed
                     window.location.href = "view_customer.php"; // Replace "http://example.com/redirect-page" with your actual redirect URL

@@ -36,7 +36,6 @@ function customerAnalytics($conn, $year){
     return $results;
 }
 
-
 // Function to fetch conversion analytics
 function conversionAnalytics($conn, $year){
     // SQL query for conversions
