@@ -139,7 +139,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
 <script>
-    function dupCheck(input) {
+   function dupCheck(input) {
     // Log the input value to the console
     console.log("Input value:", input);
     
@@ -150,28 +150,37 @@
         data: { id: input },
         success: function(response) {
             // Handle success response
-            console.log("Search result: " + response);
-             // Use SweetAlert to display a success message
-             Swal.fire({
+            console.log("Search result:", response);
+            
+            // Check if response matches the expected value
+            if (response.trim() === "Duplicate Customer Found") {
+                console.log("Duplicate customer found.");
+                
+                // Use SweetAlert to display a success message
+                Swal.fire({
                     icon: 'success',
                     title: 'Success!',
                     text: 'Status: ' + response
                 });
-
-            // Display the input value somewhere in your HTML document
-            if(response == "Duplicate Customer Found") {
-                console.log('dsd');
+                
+                // Disable the add customer button
                 document.getElementById("addcust").disabled = true;
                 document.getElementById("addcust").style.cursor = "not-allowed";
-
-               
             } else {
+                console.log("Customer not found or unexpected response:", response);
+                
+                // Enable the add customer button
                 document.getElementById("addcust").disabled = false;
                 document.getElementById("addcust").style.cursor = "pointer";
             }
+        },
+        error: function(xhr, status, error) {
+            // Handle AJAX errors
+            console.error("AJAX error:", error);
         }
     });
 }
+
 
     // JavaScript function to send form data via AJAX
     function submitFormData(event) {
