@@ -78,7 +78,6 @@
             </div>
          
             <!-- Button to trigger AJAX call and modal -->
-        <button type="button" class="btn btn-primary" onclick="openModalWithAjax('8')">Open Modal with AJAX</button>
 
         <!-- Modal -->
         <div class="modal fade" id="viewCust" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
@@ -105,7 +104,7 @@
           function openModalWithAjax(id) {
             // Make AJAX call
             $.ajax({
-              url: 'http://localhost/o2crm/api/customer.php',
+              url: '<?php echo $url; ?>/api/customer.php',
               type: 'GET',
               data: { cid: id }, // Pass the id parameter
               success: function(response) {
