@@ -76,43 +76,17 @@
             <div class="row">
                 <?php displayUsersWithPagination($conn,'10',$url, $role); ?>
             </div>
+            <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">Toggle right offcanvas</button>
 
-        <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
-          <div class="offcanvas-header">
-            <h5 id="offcanvasRightLabel">Offcanvas right</h5>
-            <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-          </div>
-          <div class="offcanvas-body" id="offcanvasRightBody">
-            <!-- Data fetched by AJAX will be displayed here -->
-          </div>
-        </div>
-
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-        <script>
-          function toggleOffcanvas(offcanvasId, cid) {
-            var offcanvas = document.getElementById(offcanvasId);
-            var offcanvasBody = document.getElementById(offcanvasId + 'Body');
-            
-            if (offcanvas.classList.contains('show')) {
-              offcanvas.classList.remove('show');
-            } else {
-              offcanvas.classList.add('show');
-              // Fetch data using AJAX and update offcanvas body
-              $.ajax({
-                url: 'your_data_endpoint_url',
-                method: 'GET',
-                data: { cid: cid },
-                success: function(response) {
-                  offcanvasBody.innerHTML = response;
-                },
-                error: function(xhr, status, error) {
-                  console.error(error);
-                }
-              });
-            }
-          }
-        </script>
-
+<div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+  <div class="offcanvas-header">
+    <h5 id="offcanvasRightLabel">Offcanvas right</h5>
+    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  <div class="offcanvas-body">
+    ...
+  </div>
+</div>
 
          <!-- Include jQuery from CDN -->
 
