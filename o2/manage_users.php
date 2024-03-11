@@ -82,12 +82,12 @@ table {
                                     <input type="text" name="lname" class="form-control" id="lname"  placeholder="Smith">
                                     <label>Email</label>
                                     <input type="email" name="email" class="form-control" id="email"  placeholder="John@eg.com">
-                                    <label>Role</label>
+                                    <label>Role <?php echo $role; ?></label>
                                     <select class="form-control" name="role" id="role">
                                         <option Selected>Select Option</option>
                                         <option value="1">Agent</option>
                                         <option value="2">Advisor</option>
-                                        <option value="3">TL/Manager</option>
+                                        <option value="3"><?php echo $role; ?></option>
                                     </select>        
                                     <label>Is Verifier</label>
                                     <select class="form-control" name="verifier" id="verifier">
