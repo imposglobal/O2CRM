@@ -229,7 +229,7 @@
                     </div>
                     <div class="col-lg-4">
                         <div class="form-group pt-2">
-                            <input type="hidden" name="tcid" value="<?php echo $cid; ?>">
+                            <input type="hidden" name="spcid" value="<?php echo $cid; ?>">
                             <button onclick="submitFormData()" class="form-control mt-4 btn-sm py-2 px-4 btn-primary mb-2 mb-md-0 mr-2">Add Record</button>
                         </div>
                     </div>
