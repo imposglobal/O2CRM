@@ -75,10 +75,18 @@ function displayUsersWithPagination($conn, $limit, $url) {
             </a>
             </td>';
         }
-        echo '<td class="ag ad tm sp"> <a href="customer_tm_m.php?id='.$user['cid'].'" class="bg-dark text-white px-3 py-1 rounded">
+        if($user['added_support_name'] != null){
+            echo '<td class="ag tm "> <a href="#" style="background:green" class="text-white px-3 py-1 rounded">
+            <i style="color:black; font-size:16px" class="mdi mdi-check-decagram text-white"></i> &nbsp'.
+            $user['added_support_name']
+            .'</a>
+            </td>';
+        }else{
+            echo '<td class="ag tm"> <a href="customer_support.php?id='.$user['cid'].'" class="bg-dark text-white px-3 py-1 rounded">
             <i style="color:black; font-size:16px" class="mdi mdi-lead-pencil text-white"></i> Edit
             </a>
             </td>';
+        }
         echo '<td> <a href="" class="bg-primary text-white px-3 py-1 rounded">
         <i style="color:black; font-size:16px" class="mdi mdi-eye text-white"></i> View
         </a>
