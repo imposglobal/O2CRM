@@ -23,7 +23,7 @@ function selectusers($usertype,$name,$agent,$verification){
         }
         
         while($row = $result->fetch_assoc()) {
-            echo "<option value='" . $row["firstname"] . $row["lastname"] . "'>" . $row["firstname"] . $row["lastname"] . "</option>";
+            echo "<option value='" . $row["firstname"] ." ". $row["lastname"] . "'>" . $row["firstname"] ." ". $row["lastname"] . "</option>";
         }
         echo "</select>";
     } else {
