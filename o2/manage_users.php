@@ -87,7 +87,11 @@ table {
                                         <option Selected>Select Option</option>
                                         <option value="1">Agent</option>
                                         <option value="2">Advisor</option>
-                                        <option value="3"><?php echo $role; ?></option>
+                                        <option value="3">TL/Manager</option>
+                                        <option value="4">Support</option>
+                                        <?php if($role == 0){
+                                            echo '<option value="0">Admin</option>';
+                                        } ?>
                                     </select>        
                                     <label>Is Verifier</label>
                                     <select class="form-control" name="verifier" id="verifier">
