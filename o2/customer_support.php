@@ -191,6 +191,13 @@
                     <div class="col-lg-4">
                         <div class="form-group">
                             <label>Status</label>
+                            <select class="form-control" name="tstatus" id="tstatus">
+                                <option selected value="<?php echo $cust['status'] ?>"><?php echo $cust['status'] ?></option>
+                                <option value="Cancelled">Cancelled</option>
+                                <option value="Declined">Declined</option>
+                                <option value="Connected">Connected</option>
+                                <option value="Connection Pending">Connection Pending</option>
+                            </select>    
                             <input type="text" name="tstatus" value="<?php echo $cust['status'] ?>" class="form-control" id="tstatus" >
                         </div>
                     </div>
