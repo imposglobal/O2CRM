@@ -94,7 +94,6 @@
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
               </div>
             </div>
           </div>
@@ -130,10 +129,9 @@
         
         html += '</tbody>';
         html += '</table>';
-        $("#cname").text(data.First_Name);
         // Update modal body with generated HTML
         $('#modalBody').html(html);
-        
+        $("#cname").text(data.First_Name);
         // Open modal
         $('#viewCust').modal('show');
 },
