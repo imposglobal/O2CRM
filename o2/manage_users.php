@@ -82,7 +82,7 @@ table {
                                     <input type="text" name="lname" class="form-control" id="lname"  placeholder="Smith">
                                     <label>Email</label>
                                     <input type="email" name="email" class="form-control" id="email"  placeholder="John@eg.com">
-                                    <label>Role <?php echo $role; ?></label>
+                                    <label>Role</label>
                                     <select class="form-control" name="role" id="role">
                                         <option Selected>Select Option</option>
                                         <option value="1">Agent</option>
