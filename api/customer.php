@@ -20,7 +20,28 @@ if(isset($_REQUEST['cid'])){
     // Execute the SQL query to fetch data based on the provided id
     $sql = "SELECT 
     firstname as First_Name,
-    lastname as Last_Name
+    lastname as Last_Name,
+    email as Email,
+    phone as Phone,
+    team as Team,
+    pac as PAC,
+    agent as Agent,
+    advisor as Advisor,
+    list_id as List_ID,
+    package as Package,
+    handset as Handset,
+    handset_color as Handset_Color,
+    select_disposition as Disposition,
+    quote_id as Quote_ID,
+    spend_cap as Spend_CAP,
+    net_comms as Net_Comms,
+    dob as Date_of_Birth,
+    outcome as Outcome,
+    verification as Verification,
+    status as Status,
+    connection_date as Connection_Date,
+    support_agent as Support_Agent,
+    customer_query as Customer_Query
      FROM customers WHERE cid = $id";
     $result = mysqli_query($conn, $sql);
 
