@@ -18,7 +18,7 @@ function deleteColor($conn,$id){
     $sql = "DELETE FROM hcolor WHERE hcid = $id";
 
     if(mysqli_query($conn, $sql)) {
-        echo '<script>alert("Record deleted successfully");window.location.href = "../o2/operations.php"</script>';
+        echo '<script>alert("Record deleted successfully");window.location.href = "'.$_SERVER['HTTP_REFERER'].'"</script>';
     } else {
         echo "Error deleting record: " . mysqli_error($conn);
     }
@@ -30,7 +30,7 @@ function deletepkg($conn,$id){
     $sql = "DELETE FROM package WHERE pid = $id";
 
     if(mysqli_query($conn, $sql)) {
-        echo '<script>alert("Record deleted successfully");window.location.href = "../o2/operations.php"</script>';
+        echo '<script>alert("Record deleted successfully");window.location.href = "'.$_SERVER['HTTP_REFERER'].'"</script>';
     } else {
         echo "Error deleting record: " . mysqli_error($conn);
     }
@@ -42,7 +42,7 @@ function deletUsers($conn,$id){
     $sql = "DELETE FROM users WHERE uid = $id";
 
     if(mysqli_query($conn, $sql)) {
-        echo '<script>alert("Record deleted successfully");window.location.href = "../o2/manage_users.php"</script>';
+        echo '<script>alert("Record deleted successfully");window.location.href = "'.$_SERVER['HTTP_REFERER'].'"</script>';
     } else {
         echo "Error deleting record: " . mysqli_error($conn);
     }
@@ -54,7 +54,7 @@ function deleteCust($conn,$id){
     $sql = "DELETE FROM customers WHERE cid = $id";
 
     if(mysqli_query($conn, $sql)) {
-        echo '<script>alert("Record deleted successfully");window.location.href = "../o2/view_customer.php"</script>';
+        echo '<script>alert("Record deleted successfully");window.location.href = "'.$_SERVER['HTTP_REFERER'].'"</script>';
     } else {
         echo "Error deleting record: " . mysqli_error($conn);
     }
