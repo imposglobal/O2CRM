@@ -110,7 +110,7 @@
                 console.log(response)
     // Parse JSON response
     var data = JSON.parse(response);
-    
+    console.log(data.Fisrt_Name)
     // Generate HTML to display all fields in a two-column table
     var html = '<table class="table">';
         html += '<tbody>';
