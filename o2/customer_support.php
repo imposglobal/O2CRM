@@ -217,8 +217,14 @@
                     </div>
                     <div class="col-lg-4">
                         <div class="form-group">
-                                <label>Advisor</label>
-                            <?php selectusers(4,'advisor',null,null); ?>
+                                <label>Support</label>
+                            <?php selectusers(4,'support',null,null); ?>
+                        </div>
+                    </div>
+                    <div class="col-lg-8">
+                        <div class="form-group">
+                                <label>Customer Query</label>
+                            <textarea class="form-control" name="custq" id="custq"></textarea>
                         </div>
                     </div>
                     <div class="col-lg-4">
