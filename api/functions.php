@@ -2,7 +2,7 @@
 function selectusers($usertype,$name,$agent,$verification){
     $conn = db();
     if($verification == null){
-        $sql = "SELECT uid, username FROM users WHERE role='$usertype'";
+        $sql = "SELECT * FROM users WHERE role='$usertype'";
     }else{
           // SQL query to fetch data from the user table
     $sql = "SELECT * FROM users WHERE role='$usertype' AND verifier='$verification'";
