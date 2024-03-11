@@ -87,7 +87,7 @@ function displayUsersWithPagination($conn, $limit, $url) {
             </a>
             </td>';
         }
-        echo '<td> <a onclick="toggleOffcanvas("offcanvasRight", "'.$user['cid'].'")" href="#" class="bg-primary text-white px-3 py-1 rounded">
+        echo '<td> <a data-toggle="modal" data-target="#viewCust" href="#" class="bg-primary text-white px-3 py-1 rounded">
         <i style="color:black; font-size:16px" class="mdi mdi-eye text-white"></i> View
         </a>
         </td>';

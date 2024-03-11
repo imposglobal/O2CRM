@@ -76,19 +76,76 @@
             <div class="row">
                 <?php displayUsersWithPagination($conn,'10',$url, $role); ?>
             </div>
-            <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">Toggle right offcanvas</button>
+         
+            <!-- Button to trigger AJAX call and modal -->
+        <button type="button" class="btn btn-primary" onclick="openModalWithAjax('8')">Open Modal with AJAX</button>
 
-<div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
-  <div class="offcanvas-header">
-    <h5 id="offcanvasRightLabel">Offcanvas right</h5>
-    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-  </div>
-  <div class="offcanvas-body">
-    ...
-  </div>
-</div>
+        <!-- Modal -->
+        <div class="modal fade" id="viewCust" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+          <div class="modal-dialog modal-xl" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body" id="modalBody">
+                ...
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+              </div>
+            </div>
+          </div>
+        </div>
 
-         <!-- Include jQuery from CDN -->
+        <script>
+          function openModalWithAjax(id) {
+            // Make AJAX call
+            $.ajax({
+              url: 'http://localhost/o2crm/api/customer.php',
+              type: 'GET',
+              data: { cid: id }, // Pass the id parameter
+              success: function(response) {
+                console.log(response)
+    // Parse JSON response
+    var data = JSON.parse(response);
+    
+    // Generate HTML to display all fields in a two-column table
+    var html = '<table class="table">';
+        html += '<tbody>';
+        
+        var keys = Object.keys(data);
+        for (var i = 0; i < keys.length; i += 2) {
+            html += '<tr>';
+            html += '<td><strong>' + keys[i] + ':</strong></td>';
+            html += '<td>' + data[keys[i]] + '</td>';
+            if (keys[i + 1]) {
+                html += '<td><strong>' + keys[i + 1] + ':</strong></td>';
+                html += '<td>' + data[keys[i + 1]] + '</td>';
+            }
+            html += '</tr>';
+        }
+        
+        html += '</tbody>';
+        html += '</table>';
+        
+        // Update modal body with generated HTML
+        $('#modalBody').html(html);
+        
+        // Open modal
+        $('#viewCust').modal('show');
+},
+
+              error: function(xhr, status, error) {
+                // Handle error
+                console.error('Error:', error);
+              }
+            });
+          }
+        </script>
 
           <!-- content-wrapper ends -->
         <!-- Footer  -->
