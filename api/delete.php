@@ -6,7 +6,7 @@ function deleteHandset($conn,$id){
     $sql = "DELETE FROM handsets WHERE hid = $id";
 
     if(mysqli_query($conn, $sql)) {
-        echo '<script>alert("Record deleted successfully");window.location.href = "../o2/operations.php"</script>';
+        echo '<script>alert("Record deleted successfully");window.location.href = "'.$_SERVER['HTTP_REFERER'].'"</script>';
     } else {
         echo "Error deleting record: " . mysqli_error($conn);
     }
