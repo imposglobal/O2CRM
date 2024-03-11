@@ -1,8 +1,7 @@
 <?php
  if(!isset($_SESSION)) 
  { 
-     session_start(); 
-     ob_start();
+    session_start();
  } 
  require('db.php');
  require('functions.php');

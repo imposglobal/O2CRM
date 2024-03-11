@@ -1,4 +1,3 @@
-
 <?php require('../api/sessions.php'); ?>
       <title>Advisor - Customer Stage II</title>
       <?php require('sidebar.php'); ?>
