@@ -203,13 +203,13 @@
                     <div class="col-lg-4">
                         <div class="form-group">
                             <label>Connection Date</label>
-                            <input type="date" name="cdate" class="form-control" id="cdate" >
+                            <input type="date" value="<?php echo $cust['connection_date'] ?>" name="cdate" class="form-control" id="cdate" >
                         </div>
                     </div>
                     <div class="col-lg-4">
                         <div class="form-group">
                             <label>Team Leader/Manager</label>
-                            <input type="text" value="<?php echo $firstname." ".$lastname; ?>" name="tlm" class="form-control" id="tlm" readonly>
+                            <input type="text" value="<?php echo $cust['added_tm_m_name']; ?>" name="tlm" class="form-control" id="tlm" readonly>
                         </div>
                     </div>
                     <div class="col-lg-12 mt-2 mb-4">
