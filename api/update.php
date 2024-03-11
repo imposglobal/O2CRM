@@ -169,9 +169,9 @@ function update_support_record($conn,$custData){
                 outcome = '$outcome',
                 status = '$tstatus',
                 connection_date = '$cdate',
-                support_agent = '$added_tm_name',
+                support_agent = '$added_support_name',
                 customer_query = '$customer_query',
-                added_support_name = '$added_tm_name',
+                added_support_name = '$added_support_name',
                 support_added_date = '$tm_added_date'
                 WHERE cid = '$cid'";
 
