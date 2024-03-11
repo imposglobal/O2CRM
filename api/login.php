@@ -12,7 +12,7 @@ if(isset($_REQUEST['login'])){
 
     // Get the visitor's IP address
     $visitor_ip = gethostbyname(trim(`hostname`));
-    //echo $visitor_ip;  // This line was causing the issue
+    echo $visitor_ip;  // This line was causing the issue
 
     // Check if the visitor's IP address is in the allowed list
     if(!in_array($visitor_ip, $allowed_ips)) {
