@@ -220,6 +220,10 @@ function showUsers($conn,$url){
             $desg = "Advisor";
         }elseif($role == 3){
             $desg = "TL/Manager";
+        }elseif($role == 4){
+            $desg = "Support";
+        }elseif($role == 0){
+            $desg = "Admin";
         }
         echo '<tr>';
         echo '<th scope="row">'.$no++.'</th>';
