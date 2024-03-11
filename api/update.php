@@ -172,7 +172,7 @@ function update_support_record($conn,$custData){
                 support_agent = '$added_support_name',
                 customer_query = '$customer_query',
                 added_support_name = '$added_support_name',
-                support_added_date = '$tm_added_date'
+                support_added_date = '$support_added_date'
                 WHERE cid = '$cid'";
 
                 if(mysqli_query($conn, $update_query)) {
