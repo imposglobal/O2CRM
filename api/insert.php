@@ -48,7 +48,7 @@ function insert_customer_by_agent($custData, $conn,$agentname) {
 //id pass generator
 function generate_username_password($firstname, $lastname, $length = 8) {
     // Concatenate first name and last name
-    $username = strtolower($firstname) . strtolower($lastname);
+    $username = strtolower($firstname) . strtolower($lastname) . rand(10,1000);
 
     // Define characters allowed for password
     $chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
