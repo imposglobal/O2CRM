@@ -198,7 +198,6 @@
                                 <option value="Connected">Connected</option>
                                 <option value="Connection Pending">Connection Pending</option>
                             </select>    
-                            <input type="text" name="tstatus" value="<?php echo $cust['status'] ?>" class="form-control" id="tstatus" >
                         </div>
                     </div>
                     <div class="col-lg-4">
@@ -211,6 +210,15 @@
                         <div class="form-group">
                             <label>Team Leader/Manager</label>
                             <input type="text" value="<?php echo $firstname." ".$lastname; ?>" name="tlm" class="form-control" id="tlm" readonly>
+                        </div>
+                    </div>
+                    <div class="col-lg-12 mt-2 mb-4">
+                        <hr>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="form-group">
+                                <label>Advisor</label>
+                            <?php selectusers(4,'advisor',null,null); ?>
                         </div>
                     </div>
                     <div class="col-lg-4">
