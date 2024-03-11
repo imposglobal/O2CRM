@@ -27,7 +27,7 @@ function displayUsersWithPagination($conn, $limit, $url) {
     echo '<th class="ag tm sp">Support</th>';
     echo '<th>View Data</th>';
     echo '<th>Timeline</th>';
-    echo '<th>Delete</th>';
+    echo '<th class="delete">Delete</th>';
     echo '</tr>';
     echo '</thead>';
     echo '<tbody>';
@@ -87,7 +87,7 @@ function displayUsersWithPagination($conn, $limit, $url) {
         <i style="color:black; font-size:16px" class="mdi mdi-timetable text-dark"></i> Timeline
         </a>
         </td>';
-        echo '<td> <button href="" class="bg-danger text-white px-3 py-1 rounded" onclick="confirmDeleteCust('.$user['cid'].')">
+        echo '<td class="delete"> <button href="" class="bg-danger text-white px-3 py-1 rounded" onclick="confirmDeleteCust('.$user['cid'].')">
         <i style="color:#fff; font-size:16px" class="mdi mdi-account-remove"></i> Delete
         </button>
         </td>';

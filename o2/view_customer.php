@@ -41,6 +41,14 @@
         display: none;
       }';
       }
+      if($role != 0){
+        echo 'th.delete {
+          display: none;
+      }';
+      echo 'td.delete {
+        display: none;
+      }';
+      }
     ?>
   </style>
       
@@ -66,7 +74,7 @@
             <HR>
             <!-- first row starts here -->
             <div class="row">
-                <?php displayUsersWithPagination($conn,'10',$url); ?>
+                <?php displayUsersWithPagination($conn,'10',$url, $role); ?>
             </div>
 
          <!-- Include jQuery from CDN -->
