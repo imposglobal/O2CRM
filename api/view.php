@@ -1,7 +1,7 @@
 <?php
 // Function to retrieve users from the database with pagination and display them in a table
 function displayUsersWithPagination($conn, $limit, $url, $role, $agent_name) {
-    
+    $role = trim($role);
     // Pagination logic
     $page = isset($_GET['page']) ? $_GET['page'] : 1;
     $start = ($page - 1) * $limit;
