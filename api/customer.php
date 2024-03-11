@@ -18,7 +18,10 @@ if(isset($_REQUEST['cid'])){
     $id = $_REQUEST['cid'];
     
     // Execute the SQL query to fetch data based on the provided id
-    $sql = "SELECT * FROM customers WHERE cid = $id";
+    $sql = "SELECT 
+    firstname as First_Name,
+    lastname as Last_Name
+     FROM customers WHERE cid = $id";
     $result = mysqli_query($conn, $sql);
 
     // Fetch the data
