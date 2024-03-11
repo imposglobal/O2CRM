@@ -8,11 +8,11 @@ include 'db.php';
 $db = db();
 if(isset($_REQUEST['login'])){
     // Define the allowed IP addresses
-    $allowed_ips = array("122.170.110.208", "103.211.62.116","192.168.1.6","162.215.241.244");
+    $allowed_ips = array("122.170.110.208", "103.211.62.116","192.168.1.2","162.215.241.244");
 
     // Get the visitor's IP address
     $visitor_ip = gethostbyname(trim(`hostname`));
-    // echo $visitor_ip;  // This line was causing the issue
+    //echo $visitor_ip;  // This line was causing the issue
 
     // Check if the visitor's IP address is in the allowed list
     if(!in_array($visitor_ip, $allowed_ips)) {

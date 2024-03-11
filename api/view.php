@@ -1,13 +1,18 @@
 <?php
 // Function to retrieve users from the database with pagination and display them in a table
-function displayUsersWithPagination($conn, $limit, $url) {
+function displayUsersWithPagination($conn, $limit, $url, $role, $agent_name) {
     
     // Pagination logic
     $page = isset($_GET['page']) ? $_GET['page'] : 1;
     $start = ($page - 1) * $limit;
-
-    // Retrieve users
-    $query = "SELECT * FROM customers ORDER BY cid DESC LIMIT $start, $limit";
+    if($role == 0 || $role == 3 || $role == 4){
+        // Retrieve users
+        $query = "SELECT * FROM customers ORDER BY cid DESC LIMIT $start, $limit";
+    }elseif($role == 1){
+        $query = "SELECT * FROM customers WHERE agent = '$agent_name' ORDER BY cid DESC LIMIT $start, $limit";
+    }elseif($role == 2){
+        $query = "SELECT * FROM customers WHERE advisor = '$agent_name' ORDER BY cid DESC LIMIT $start, $limit";
+    }
     $result = mysqli_query($conn, $query);
     $users = mysqli_fetch_all($result, MYSQLI_ASSOC);
 

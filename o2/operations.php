@@ -61,7 +61,9 @@ table {
                         <select class="form-control" id="smenu"  onchange="redirectToPage()">
                             <option selected>Select Options</option>
                             <option value="handset">Handset | Color | Package</option>
-                            <option value="manage">Manage Users</option>
+                            <?php if($role == 0){
+                                echo'<option value="manage">Manage Users</option>';
+                            } ?>
                         </select>
                     </div>
                 </div>

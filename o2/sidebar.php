@@ -1,4 +1,6 @@
-<?php $url = baseurl(); ?>
+<?php $url = baseurl();
+$fullname = $firstname." ".$lastname;
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -43,7 +45,7 @@ label {
                 <!--change to offline or busy as needed-->
               </div>
               <div class="nav-profile-text d-flex ml-0 mb-3 flex-column">
-                <span class="font-weight-semibold mb-1 mt-2 text-center text-capitalize"><?php echo $firstname." ".$lastname; ?></span>
+                <span class="font-weight-semibold mb-1 mt-2 text-center text-capitalize"><?php echo $fullname;  ?></span>
                 <span class="text-secondary icon-sm text-center">$3499.00</span>
               </div>
             </a>
@@ -86,12 +88,14 @@ label {
               <span class="menu-title">Analytics</span>
             </a>
           </li>
+          <?php if($role == 3 && $role == 0){ ?>
           <li class="nav-item">
             <a class="nav-link" href="operations.php">
               <i class="mdi mdi-format-list-bulleted-type menu-icon"></i>
               <span class="menu-title">Operations</span>
             </a>
           </li>
+          <?php } ?>
         </ul>
       </nav>
       <div class="container-fluid page-body-wrapper">

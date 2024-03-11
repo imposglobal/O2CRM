@@ -74,7 +74,7 @@
             <HR>
             <!-- first row starts here -->
             <div class="row">
-                <?php displayUsersWithPagination($conn,'10',$url, $role); ?>
+                <?php displayUsersWithPagination($conn,'10',$url, $role, $fullname); ?>
             </div>
          
             <!-- Button to trigger AJAX call and modal -->
