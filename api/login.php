@@ -7,7 +7,7 @@ include 'db.php';
 
 $db = db();
 if(isset($_REQUEST['login'])){
-    // Define the allowed IP addresses
+    // Define the allow ed IP addresses
     $allowed_ips = array("122.170.110.208", "103.211.62.116","192.168.1.2","162.215.241.244");
 
     // Get the visitor's IP address
